@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  padding-top: 70px;
+}
+
+.header-position {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+}

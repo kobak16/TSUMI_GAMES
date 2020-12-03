@@ -4,22 +4,12 @@
     <title>TumiGamesApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= render 'layouts/partial/shim' %>
+    <%= render 'partial/shim' %>
   </head>
-
   <body>
-    <header>
-      <%= render 'layouts/partial/header' %>
-    </header>
-    
-    <!-- devise 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    -->
-
+    <%= render 'partial/header' %>
     <div class="yield-container">
       <%= yield %>
     </div>
