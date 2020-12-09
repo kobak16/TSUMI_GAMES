@@ -4,7 +4,8 @@
     <div class="row">
       <div class="col-md-6 bg-white">
          <%= link_to gamer.username, gamer_path(gamer.id) %>
-       </div>
+         <h5 class="text-dark"><%= gamer.favorite %></h5>
+      </div>
     </div>
   <% end %>
   <%= paginate @gamers %>

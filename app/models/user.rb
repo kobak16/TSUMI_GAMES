@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :username, presence: true
+  validates :favorite, presence: false, length: { maximum: 50 }
 end
