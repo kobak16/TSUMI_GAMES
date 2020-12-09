@@ -5,6 +5,10 @@ class GamersController < ApplicationController
 
   def show; end
 
+  def index
+    @gamers = User.all
+  end
+
   def edit; end
 
   def update; end

@@ -1,0 +1,10 @@
+<h1>index</h1>
+<div class="container">
+  <% @gamers.each do |gamer| %>
+    <div class="row">
+      <div class="col-md-6 bg-white">
+         <%= link_to gamer.username, gamer_path(gamer.id) %>
+       </div>
+    </div>
+  <% end %>
+</div>
