@@ -6,7 +6,8 @@ class GamersController < ApplicationController
   def show; end
 
   def index
-    @gamers = User.all
+    @gamers = User.all.page(params[:page]).per(10)
+
   end
 
   def edit; end
