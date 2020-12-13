@@ -1,0 +1,13 @@
+<h1>ゲーム一覧・検索</h1>
+<div class="container">
+  <% @games.each do |game| %>
+    <div class="row">
+      <div class="col-md-6 bg-white">
+        <a class="text-dark" href="#"><%= game.title %></a>
+        <a class="text-dark" href="#"><%= game.machine %></a>
+        <a class="text-dark" href="#"><%= game.genre %></a>
+        <a class="text-dark" href="#"><%= game.user.username %></a>
+      </div>
+    </div>
+  <% end %>
+</div>
