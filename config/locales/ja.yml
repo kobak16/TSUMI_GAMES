@@ -21,6 +21,7 @@ ja:
         wii: "Wii"
         gc: "ニンテンドー ゲームキューブ"
         n64: "NINTENDO64"
+        gb_gba: "ゲームボーイ・ゲームボーイアドバンス"
         fc_sfc: "ファミコン・スーパーファミコン"
         ps5: "PlayStation 5"
         ps4: "PlayStation 4"
