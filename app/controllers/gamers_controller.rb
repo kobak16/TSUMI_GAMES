@@ -7,7 +7,6 @@ class GamersController < ApplicationController
 
   def index
     @gamers = User.all.page(params[:page]).per(10)
-
   end
 
   def edit; end

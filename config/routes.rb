@@ -5,7 +5,13 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   root 'homes#index'
+
   resources :gamers
-  resources :games
+
+  resources :games do
+    collection do
+      get :mygames
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
