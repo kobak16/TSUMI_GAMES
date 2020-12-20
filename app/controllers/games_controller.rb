@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :set_games, only: [:show]
 
   def new
     @game = Game.new
@@ -16,6 +17,8 @@ class GamesController < ApplicationController
   def index
     @games = Game.all.page(params[:page]).per(10)
   end
+
+  def show; end
 
   def mygames
     # user_id == current_user.id のゲームを取得

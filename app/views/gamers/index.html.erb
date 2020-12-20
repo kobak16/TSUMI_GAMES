@@ -1,12 +1,14 @@
 <h1>index</h1>
 <div class="container">
-  <% @gamers.each do |gamer| %>
-    <div class="row">
-      <div class="col-md-6 bg-white">
-         <%= link_to gamer.username, gamer_path(gamer.id) %>
-         <h5 class="text-dark"><%= gamer.favorite %></h5>
+  <div class="row">
+    <% @gamers.each do |gamer| %>
+      <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
+         <%= link_to gamer_path(gamer.id), class: 'text-dark' do %>
+          <h3><%= gamer.username %></h3>
+          <h5 class="text-dark"><%= gamer.favorite %></h5>
+        <% end %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <%= paginate @gamers %>
 </div>
