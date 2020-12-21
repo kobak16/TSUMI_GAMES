@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   }
   root 'homes#index'
 
-  resources :gamers
-
-  resources :games do
-    collection do
-      get :mygames
-    end
+  resources :gamers do
+    get :mygames, on: :member
   end
+
+  resources :games
+  
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

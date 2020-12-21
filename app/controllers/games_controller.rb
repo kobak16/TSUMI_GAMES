@@ -20,12 +20,8 @@ class GamesController < ApplicationController
 
   def show; end
 
-  def mygames
-    # user_id == current_user.id のゲームを取得
-    @games = Game.where(user_id: current_user.id).page(params[:page]).per(10)
-  end
 
-  
+
   private
 
   def game_params
@@ -35,4 +31,5 @@ class GamesController < ApplicationController
   def set_games
     @game = Game.find(params[:id])
   end
+  
 end
