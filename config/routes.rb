@@ -7,8 +7,14 @@ Rails.application.routes.draw do
   root 'homes#index'
 
   resources :gamers do
-    get :mygames, on: :member
+    member do
+      get :mygames
+      get :followings
+      get :followers
+    end
   end
+
+  resources :relationships, only: [:create, :destroy]
 
   resources :games
   

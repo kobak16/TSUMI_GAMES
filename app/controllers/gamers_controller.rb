@@ -2,7 +2,9 @@ class GamersController < ApplicationController
   before_action :set_gamer, only: [:show,
                                    :edit,
                                    :update,
-                                   :mygames]
+                                   :mygames,
+                                   :followings,
+                                   :followers]
 
 
   def show; end
@@ -25,6 +27,14 @@ class GamersController < ApplicationController
   def mygames
     # user_id == current_user.id のゲームを取得
     @games = Game.where(user_id: current_user.id).page(params[:page]).per(10)
+  end
+
+  def followings
+    @gamers = @gamer.followings
+  end
+
+  def followers
+    @gamers = @gamer.followers
   end
   
 

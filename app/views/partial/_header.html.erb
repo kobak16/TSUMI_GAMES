@@ -28,8 +28,10 @@
           <%= link_to '積みゲー追加', new_game_path, class: 'nav-link text-dark' %>    
           <!-- <a class="nav-link text-dark" href="#">マイゲーム</a> -->
           <%= link_to 'マイゲーム', mygames_gamer_path(current_user.id), class: 'nav-link text-dark' %>
-          <a class="nav-link text-dark" href="#">フォロー</a>
-          <a class="nav-link text-dark" href="#">フォロワー</a>
+          <!-- <a class="nav-link text-dark" href="#">フォロー</a> -->
+          <%= link_to 'フォロー', followings_gamer_path(current_user.id), class: 'nav-link text-dark' %>
+          <!-- <a class="nav-link text-dark" href="#">フォロワー</a> -->
+          <%= link_to 'フォロワー', followers_gamer_path(current_user.id), class: 'nav-link text-dark' %>
         </nav>
       </div>
     </div>

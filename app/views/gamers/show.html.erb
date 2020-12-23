@@ -1,7 +1,28 @@
-<div class="upper-padding">
-  <h1>about me</h1>
-  <h3>ユーザー名</h3>
-  <%= @gamer.username %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h1>about me</h1>
+      <h3>ユーザー名</h3>
+      <%= @gamer.username %>
+      <%= link_to 'ユーザー情報編集', edit_user_registration_path %>
 
-  <%= link_to 'ユーザー情報編集', edit_user_registration_path %>
+      <div class="d-flex m-1">
+        <div class="follower mr-2">
+            <%= link_to followers_gamer_path(@gamer.id) do %>
+              <h4 id="followers" class="text-dark"><%= @gamer.followers.count %></h4>
+              <h6>フォロワー</h6>
+            <% end %>
+        </div> 
+        <div class="follow">
+            <%= link_to followings_gamer_path(@gamer.id) do %>
+                <h4 class="text-dark"><%= @gamer.followings.count %></h4>
+                <h6>フォロー</h6>
+            <% end %>
+        </div>
+      </div>
+      <div id="follow_form">
+        <%= render "/partial/follow_form" %>
+      </div>
+    </div>
+  </div>
 </div>

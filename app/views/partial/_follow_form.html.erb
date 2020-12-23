@@ -1,0 +1,12 @@
+<% if user_signed_in? && @gamer != current_user %>
+  <% if current_user.following?(@gamer) %>
+    <%= form_for(current_user, url: relationship_path(@gamer), method: :delete, remote: true) do |f| %>
+      <%= f.submit "フォロー解除", class: "btn btn-outline-secondary" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user, url: relationships_path, method: :post, remote: true) do |f| %>
+      <%= hidden_field_tag :following_id, @gamer.id %>
+      <%= f.submit "フォローする", class: "btn btn-outline-secondary" %>
+    <% end %>
+  <% end %>
+<% end %>
