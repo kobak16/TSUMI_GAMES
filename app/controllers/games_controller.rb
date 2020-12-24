@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
-  before_action :set_games, only: [:show]
+  before_action :set_games, only: [:show,
+                                   :edit,
+                                   :update]
 
   def new
     @game = Game.new
@@ -20,12 +22,22 @@ class GamesController < ApplicationController
 
   def show; end
 
+  def edit; end
+
+  def update
+    if @game.update(game_params)
+      redirect_to game_path(@game)
+    else
+      render 'edit'
+    end
+  end
+
 
 
   private
 
   def game_params
-    params.require(:game).permit(:title, :genre, :machine).merge(user_id: current_user.id)
+    params.require(:game).permit(:title, :genre, :machine, :rate).merge(user_id: current_user.id)
   end
 
   def set_games

@@ -1,6 +1,10 @@
 class Game < ApplicationRecord
   belongs_to :user
 
+  validates :title, presence: true
+  validates :genre, presence: true
+  validates :machine, presence: true
+
   enum genre: {
     "-----": 0,
     action: 1,
