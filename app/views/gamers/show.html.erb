@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-4">
       <h1>about me</h1>
-      <h3>ユーザー名</h3>
-      <%= @gamer.username %>
+      <h6>ユーザー名 : <%= @gamer.username %></h6>
+      <h6>お気に入り : <%= @gamer.favorite %></h6>
       <%= link_to 'ユーザー情報編集', edit_user_registration_path %>
 
       <div class="d-flex m-1">
@@ -20,6 +20,8 @@
             <% end %>
         </div>
       </div>
+      <h3>未クリア : <%= @not_clear_games.count %></h3>
+      <h3>クリア済み : <%= @cleared_games.count %></h3>
       <div id="follow_form">
         <%= render "/partial/follow_form" %>
       </div>

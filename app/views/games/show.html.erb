@@ -7,20 +7,35 @@
       <a class="text-dark" href="#"><%= @game.genre_i18n %></a>
       <a class="text-dark" href="#"><%= @game.user.username %>
 
-      <div id="star-rate-<%= @game.id %>"></div>
-      <script>
-      $('#star-rate-<%= @game.id %>').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: <%= @game.rate %>,
-      });
-      </script>
+      <h5>登録日 : <%= @game.created_at.strftime("%Y年%m月%d日") %></h5>
+
+      <% if @game.status == 0 %>
+        <h6>未クリア</h6>
+      <% else %>
+        <h6>クリア日 : <%= @game.updated_at.strftime("%Y年%m月%d日") %></h6>
+      <%end %>
       
-      <%= link_to '編集する', edit_game_path(@game) %>
+      <% if @game.status == 0 %>
+        <%= link_to 'クリア報告', edit_game_path(@game, name: "clear") %> <!-- clear -->
+        <%= link_to '編集する', edit_game_path(@game, name: "not_cleared") %> <!-- not_cleared -->
+      <% else %>
+        <div id="star-rate-<%= @game.id %>"></div>
+        <script>
+        $('#star-rate-<%= @game.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= @game.rate %>,
+        });
+        </script>
+        <h5 class="text-dark"><%= @game.comment %></h5>
+        <%= link_to '編集する', edit_game_path(@game, name: "cleared") %> <!-- cleared -->
+      <% end %>
+
+      <%= link_to '削除する', game_path(@game), method: :delete, class: 'btn btn-secondary btn-lg' %>
     </div>
   </div>
 </div>

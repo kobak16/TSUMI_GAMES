@@ -17,5 +17,6 @@ module TSUMIGames
     # the framework and any gems in your application.
     config.i18n.default_locale = :ja
 
+    config.time_zone = 'Tokyo'
   end
 end

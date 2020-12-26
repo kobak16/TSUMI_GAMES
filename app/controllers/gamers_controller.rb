@@ -7,7 +7,10 @@ class GamersController < ApplicationController
                                    :followers]
 
 
-  def show; end
+  def show
+    @not_clear_games = Game.where(user_id: @gamer.id, status: 0)
+    @cleared_games = Game.where(user_id: @gamer.id, status: 1)
+  end
 
   def index
     @gamers = User.all.page(params[:page]).per(10)

@@ -1,7 +1,8 @@
 class GamesController < ApplicationController
   before_action :set_games, only: [:show,
                                    :edit,
-                                   :update]
+                                   :update,
+                                   :destroy]
 
   def new
     @game = Game.new
@@ -24,11 +25,30 @@ class GamesController < ApplicationController
 
   def edit; end
 
+  @@clear_day = 'default'
   def update
-    if @game.update(game_params)
-      redirect_to game_path(@game)
+    if params[:name] == 'clear'
+      if @game.update(game_params)
+        @@clear_day =  @game.updated_at
+        redirect_to game_path(@game)
+        binding.pry
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      if @game.update(game_params)
+        redirect_to game_path(@game)
+      else
+        render 'edit'
+      end
+    end
+  end
+
+  def destroy
+    if @game.destroy
+      redirect_to gamer_path(@game.user_id)
+    else
+      render 'show'
     end
   end
 
@@ -37,7 +57,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:title, :genre, :machine, :rate).merge(user_id: current_user.id)
+    params.require(:game).permit(:title, :genre, :machine, :rate, :comment, :status, :created_at, :updated_at).merge(user_id: current_user.id)
   end
 
   def set_games
