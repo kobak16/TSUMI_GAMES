@@ -36,6 +36,10 @@
       <% end %>
 
       <%= link_to '削除する', game_path(@game), method: :delete, class: 'btn btn-secondary btn-lg' %>
+
+      <div id="like_form">
+        <%= render "/partial/like" %>
+      </div>
     </div>
   </div>
 </div>

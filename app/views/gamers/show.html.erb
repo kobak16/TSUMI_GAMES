@@ -22,6 +22,8 @@
       </div>
       <h3>未クリア : <%= @not_clear_games.count %></h3>
       <h3>クリア済み : <%= @cleared_games.count %></h3>
+      <h3>気になる : <%= @like.count %>
+
       <div id="follow_form">
         <%= render "/partial/follow_form" %>
       </div>

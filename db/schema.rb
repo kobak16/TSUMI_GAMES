@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_123506) do
+ActiveRecord::Schema.define(version: 2020_12_26_120342) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2020_12_24_123506) do
     t.index ["machine"], name: "index_games_on_machine"
     t.index ["title"], name: "index_games_on_title"
     t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_likes_on_game_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -53,4 +62,6 @@ ActiveRecord::Schema.define(version: 2020_12_24_123506) do
   end
 
   add_foreign_key "games", "users"
+  add_foreign_key "likes", "games"
+  add_foreign_key "likes", "users"
 end

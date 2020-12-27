@@ -4,12 +4,14 @@ class GamersController < ApplicationController
                                    :update,
                                    :mygames,
                                    :followings,
-                                   :followers]
+                                   :followers,
+                                   :likes]
 
 
   def show
     @not_clear_games = Game.where(user_id: @gamer.id, status: 0)
     @cleared_games = Game.where(user_id: @gamer.id, status: 1)
+    @like = Like.where(user_id: @gamer.id)
   end
 
   def index
@@ -28,7 +30,6 @@ class GamersController < ApplicationController
   #end
 
   def mygames
-    # user_id == current_user.id のゲームを取得
     @games = Game.where(user_id: current_user.id).page(params[:page]).per(10)
   end
 
@@ -38,6 +39,13 @@ class GamersController < ApplicationController
 
   def followers
     @gamers = @gamer.followers
+  end
+
+  def likes
+    @like = Like.find_by(user_id: @gamer.id)
+    if @like != nil
+      @games = Game.where(id: @like.game_id)
+    end
   end
   
 

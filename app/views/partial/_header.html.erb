@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="nav-scroller bg-light shadow-sm">
-        <nav class="nav nav-underline nav-fill w-100 align-items-start">
+        <nav class="nav nav-underline justify-content-center w-100 align-items-start">
           <!-- <a class="nav-link text-dark" href="#">ゲーム検索</a> -->
           <%= link_to 'ゲーム検索', '/games', class: 'nav-link text-dark' %>
           <!-- <a class="nav-link text-dark" href="#">ユーザー一覧</a> -->
@@ -28,6 +28,7 @@
           <%= link_to '積みゲー追加', new_game_path, class: 'nav-link text-dark' %>    
           <!-- <a class="nav-link text-dark" href="#">マイゲーム</a> -->
           <%= link_to 'マイゲーム', mygames_gamer_path(current_user.id), class: 'nav-link text-dark' %>
+          <%= link_to '気になる', likes_gamer_path(current_user.id), class: 'nav-link text-dark' %>
           <!-- <a class="nav-link text-dark" href="#">フォロー</a> -->
           <%= link_to 'フォロー', followings_gamer_path(current_user.id), class: 'nav-link text-dark' %>
           <!-- <a class="nav-link text-dark" href="#">フォロワー</a> -->

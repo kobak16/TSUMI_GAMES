@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
   belongs_to :user
+  has_many :likes
 
   validates :title, presence: true
   validates :genre, presence: true
