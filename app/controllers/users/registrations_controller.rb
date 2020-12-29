@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :check_guest, only: [:update,
+                                     :destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -59,6 +61,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     gamer_path(resource)
    end
 
+   def check_guest
+    if resource.email == 'guest@example.com'
+      redirect_to gamer_path(current_user), alert: 'ゲストユーザーは削除・変更はできません。'
+    end
+   end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

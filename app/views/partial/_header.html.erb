@@ -46,7 +46,8 @@
         <!-- <a class="p-2 text-white" href="new_user_registration_path">新規登録</a> -->   
         <%= link_to 'ログイン', new_user_session_path, class: 'p-2 text-white' %>
         <!-- <a class="p-2 text-white" href="new_user_session_path">ログイン</a> -->
-        <a class="p-2 text-white" href="#">テストログイン</a>
+        <!-- <a class="p-2 text-white" href="#">テストログイン</a>  -->
+        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'p-2 text-white' %>
       </nav>
     </div>
   </div>
