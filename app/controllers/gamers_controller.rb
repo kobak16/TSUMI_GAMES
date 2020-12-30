@@ -31,6 +31,13 @@ class GamersController < ApplicationController
 
   def mygames
     @games = Game.where(user_id: current_user.id).page(params[:page]).per(10)
+    if params[:sta] == 'not_cleared'
+      @not_cleared = Game.where(user_id: current_user.id, status: 0).page(params[:page]).per(10)
+      render '/partial/_mygames_not_cleared'
+    elsif params[:sta] == 'cleared'
+      @cleared = Game.where(user_id: current_user.id, status: 1).page(params[:page]).per(10)
+      render '/partial/_mygames_cleared'
+    end
   end
 
   def followings
