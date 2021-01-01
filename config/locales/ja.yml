@@ -2,7 +2,6 @@ ja:
   enums:
     game:
       genre:
-        "-----": "--未選択--"
         action: "アクション"
         adventure: "アドベンチャー"
         arcade: "アーケード"
@@ -13,7 +12,6 @@ ja:
         love: "恋愛"
         another: "その他"
       machine:
-        "-----": "--未選択--"
         switch: "Nintendo Switch"
         thr_ds: "ニンテンドー3DS"
         ds: "ニンテンドーDS"
