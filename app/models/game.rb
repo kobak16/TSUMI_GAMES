@@ -7,42 +7,42 @@ class Game < ApplicationRecord
   validates :machine, presence: true
 
   enum genre: {
-    "-----": 0,
-    action: 1,
-    adventure: 2,
-    arcade: 3,
-    simulation: 4,
-    shooting: 5,
-    puzzle: 6,
-    rpg: 7,
-    love: 8,
-    another: 9
+    action: 0,
+    adventure: 1,
+    arcade: 2,
+    simulation: 3,
+    shooting: 4,
+    puzzle: 5,
+    rpg: 6,
+    love: 7,
+    another: 8
   }, _prefix: true
 
+  
   enum machine: {
-    "-----": 0,
-    switch: 1,
-    thr_ds: 2,
-    ds: 3,
-    wiiu: 4,
-    wii: 5,
-    gc: 6,
-    n64: 7,
-    gb_gba: 8,
-    fc_sfc: 9,
-    ps5: 10,
-    ps4: 11,
-    ps3: 12,
-    ps2: 13,
-    ps: 14,
-    ps_vita: 15,
-    psp: 16,
-    xbox_sx: 17,
-    xbox_one: 18,
-    xbox_360: 19,
-    xbox: 20,
-    pc: 21,
-    another: 22
+    switch: 0,
+    thr_ds: 1,
+    ds: 2,
+    wiiu: 3,
+    wii: 4,
+    gc: 5,
+    n64: 6,
+    gb_gba: 7,
+    fc_sfc: 8,
+    ps5: 9,
+    ps4: 10,
+    ps3: 11,
+    ps2: 12,
+    ps: 13,
+    ps_vita: 14,
+    psp: 15,
+    xbox_sx: 16,
+    xbox_one: 17,
+    xbox_360: 18,
+    xbox: 19,
+    pc: 20,
+    another: 21
   }, _prefix: true
 
+  
 end

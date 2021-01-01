@@ -58,6 +58,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'enum_help'
 gem 'rails-i18n'
+gem 'ransack'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

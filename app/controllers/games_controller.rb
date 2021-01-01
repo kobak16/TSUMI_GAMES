@@ -18,7 +18,14 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all.page(params[:page]).per(10)
+    if params[:q].present?
+      @q = Game.ransack(params[:q])
+      @games = @q.result(distinct: true).page(params[:page]).per(10)
+    else
+      params[:q] = { sorts: 'created_at desc' }
+      @q = Game.ransack(params[:q])
+      @games = @q.result(distinct: true).page(params[:page]).per(10)
+    end
   end
 
   def show; end
@@ -31,7 +38,6 @@ class GamesController < ApplicationController
       if @game.update(game_params)
         @@clear_day =  @game.updated_at
         redirect_to game_path(@game)
-        binding.pry
       else
         render 'edit'
       end
@@ -52,8 +58,6 @@ class GamesController < ApplicationController
     end
   end
 
-
-
   private
 
   def game_params
@@ -63,5 +67,7 @@ class GamesController < ApplicationController
   def set_games
     @game = Game.find(params[:id])
   end
+
+  
   
 end

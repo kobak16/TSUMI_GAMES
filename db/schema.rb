@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 2020_12_26_120342) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "genre", default: 0, null: false
-    t.integer "machine", default: 0, null: false
+    t.integer "genre", null: false
+    t.integer "machine", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

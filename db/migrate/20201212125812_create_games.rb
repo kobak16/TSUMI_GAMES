@@ -2,8 +2,8 @@ class CreateGames < ActiveRecord::Migration[6.0]
   def change
     create_table :games do |t|
       t.string :title, null: false
-      t.integer :genre, null: false, default: 0
-      t.integer :machine, null: false, default: 0
+      t.integer :genre, null: false
+      t.integer :machine, null: false
       t.references :user, foreign_key: true
 
       t.timestamps

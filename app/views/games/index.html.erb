@@ -1,15 +1,38 @@
 <h1>ゲーム一覧・検索</h1>
 <div class="container">
   <div class="row">
-    <% @games.each do |game| %>
-      <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-        <%= link_to game_path(game.id) do %>
-          <h3 class="text-dark"><%= game.title %></h3>
-          <h5 class="text-dark"><%= game.machine_i18n %></h5>
-          <h5 class="text-dark"><%= game.genre_i18n%></h5>
-          <h5 class="text-dark"><%= game.user.username %></h5>
-        <% end %>
-      </div>
+
+    <%= search_form_for(@q, url: games_path) do |f| %>
+      <%= f.label :title_count, "タイトル" %>
+      <%= f.search_field :title_cont, {include_blank: '選択なし'} %>
+      
+      <%= f.label :genre_eq, 'ジャンル' %>
+      <%= f.select :genre_eq, Game.genres.map{|k, v| [Game.genres_i18n[k], v]}, {include_blank: '選択なし'} %>
+     
+      <%= f.label :machine_eq, 'ハード' %>
+      <%= f.select :machine_eq, Game.machines.map{|k, v| [Game.machines_i18n[k], v]}, {include_blank: '選択なし'} %>
+      
+      <%= f.submit "検索" %>
+
+      <%= f.label :sorts, '並び替え' %>
+      <%= f.select :sorts, { '登録の新しい順': 'created_at desc', '登録の古い順': 'created_at asc', '評価の高い順': 'rate desc', '評価の低い順': 'rate asc' }, { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} %>
+
+    <% end %>
+
+    <% if @games.any? %>
+      <% @games.each do |game| %>
+         <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
+          <%= link_to game_path(game.id) do %>
+            <h3 class="text-dark"><%= game.title %></h3>
+            <h5 class="text-dark"><%= game.machine_i18n %></h5>
+            <h5 class="text-dark"><%= game.genre_i18n%></h5>
+            <h5 class="text-dark"><%= game.user.username %></h5>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h1><%= '検索結果がありません。' %></h1>
     <% end %>
   </div>
+  <%= paginate @games %>
 </div>
