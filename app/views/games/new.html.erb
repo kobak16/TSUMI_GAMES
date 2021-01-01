@@ -3,14 +3,18 @@
     <div class="col-md-4">
       <%= form_with(model: @game, local: true) do |f| %>
         <h1>積みゲー登録</h1>
+
         <h3>タイトル</h3>
-        <%= f.text_field :title, class: 'form-control' %>
+        <%= f.text_field :title %>
+
         <h3>ハード</h3>
-        <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, {include_blank: '選択なし'}, 
-            class: 'form-control col-md-6' %>
+        <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, 
+              {include_blank: '選択なし'} %>
+
         <h3>ジャンル</h3>
-        <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, {include_blank: '選択なし'}, 
-            class: 'form-control col-md-6' %>
+        <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, 
+              {include_blank: '選択なし'}%>
+
         <%= f.submit '積みゲーを追加', class: 'btn btn-secondary btn-lg' %>
       <% end %>
     </div>
