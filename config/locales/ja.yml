@@ -1,5 +1,19 @@
 ja:
   enums:
+    user:
+      sex:
+        male: "男性"
+        female: "女性"
+        another: "その他"
+      ages:
+        under10: "10歳未満"
+        teenagers: "10代"
+        twenties: "20代"
+        thirties: "30代"
+        forties: "40代"
+        fifties: "50代"
+        sixties: "60代"
+        over70: "70際以上"
     game:
       genre:
         action: "アクション"

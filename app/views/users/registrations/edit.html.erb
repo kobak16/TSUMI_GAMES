@@ -14,6 +14,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.collection_radio_buttons :sex, User.sexes_i18n, :first , :last %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ages %><br />
+    <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]}, {include_blank: '選択なし'} %>
+  </div>
+
+  <div class="field">
     <%= f.label :favorite %><br />
     <%= f.text_field :favorite, autofocus: true %>
   </div>

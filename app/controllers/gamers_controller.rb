@@ -15,7 +15,14 @@ class GamersController < ApplicationController
   end
 
   def index
-    @gamers = User.all.page(params[:page]).per(10)
+    if params[:q].present?
+      @q = User.ransack(params[:q])
+      @gamers = @q.result(distinct: true).page(params[:page]).per(10)
+    else
+      params[:q] = { sorts: 'created_at desc' }
+      @q = User.ransack(params[:q])
+      @gamers = @q.result(distinct: true).page(params[:page]).per(10)
+    end
   end
 
   def edit; end
@@ -59,7 +66,7 @@ class GamersController < ApplicationController
   private
 
   def gamer_params
-    params.require(:user).permit(:username, :email)
+    params.require(:user).permit(:username, :email, :sex, :ages)
   end
 
   def set_gamer

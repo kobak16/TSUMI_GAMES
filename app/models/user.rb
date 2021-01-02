@@ -13,6 +13,8 @@ class User < ApplicationRecord
   
   validates :username, presence: true
   validates :favorite, presence: false, length: { maximum: 50 }
+  validates :sex, presence: true
+  validates :ages, presence: true
 
 
   def following?(other_user)
@@ -28,9 +30,27 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(username: 'ゲスト', email: 'guest@example.com') do |user|
+    find_or_create_by!(username: 'ゲスト', email: 'guest_sample@example.com', 
+                        sex: 'male', ages: 'twenties', favorite: 'ドラゴンクエスト') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
   end
+
+  enum sex: {
+    male: 0,
+    female: 1,
+    another: 2
+  }, _prefix: true
+
+  enum ages: {
+    under10: 0,
+    teenagers: 1,
+    twenties: 2,
+    thirties: 3,
+    forties: 4,
+    fifties: 5,
+    sixties: 6,
+    over70: 7
+  }, _prefix: true
 
 end

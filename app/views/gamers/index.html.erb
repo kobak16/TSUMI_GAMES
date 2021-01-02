@@ -1,14 +1,38 @@
 <h1>index</h1>
 <div class="container">
   <div class="row">
-    <% @gamers.each do |gamer| %>
-      <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-         <%= link_to gamer_path(gamer.id), class: 'text-dark' do %>
-          <h3><%= gamer.username %></h3>
-          <h5 class="text-dark"><%= gamer.favorite %></h5>
-        <% end %>
-      </div>
+
+    <%= search_form_for(@q, url: gamers_path) do |f| %>
+      <%= f.label :username_count, "ユーザー名" %>
+      <%= f.search_field :username_cont, {include_blank: '選択なし'} %>
+      
+      <%= f.label :sex_eq, '性別' %>
+      <%= f.select :sex_eq, User.sexes.map{|k, v| [User.sexes_i18n[k], v]}, {include_blank: '選択なし'} %>
+     
+      <%= f.label :ages_eq,  '年齢' %>
+      <%= f.select :ages_eq, User.ages.map{|k, v| [User.ages_i18n[k], v]}, {include_blank: '選択なし'} %>
+      
+      <%= f.submit "検索" %>
+
+      <%= f.label :sorts, '並び替え' %>
+      <%= f.select :sorts, { '登録の新しい順': 'created_at desc', '登録の古い順': 'created_at asc', '五十音順': 'username asc' }, { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} %>
     <% end %>
+
+    <% if @gamers.any? %>
+      <% @gamers.each do |gamer| %>
+        <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
+          <%= link_to gamer_path(gamer.id), class: 'text-dark' do %>
+            <h2><%= gamer.username %></h2>
+            <h3><%= gamer.sex_i18n %></h3>
+            <h3><%= gamer.ages_i18n %></h3>
+            <h5 class="text-dark"><%= gamer.favorite %></h5>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h1><%= '検索結果がありません。' %></h1>
+    <% end %>
+
   </div>
   <%= paginate @gamers %>
 </div>

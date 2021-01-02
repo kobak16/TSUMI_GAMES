@@ -18,7 +18,6 @@ class Game < ApplicationRecord
     another: 8
   }, _prefix: true
 
-  
   enum machine: {
     switch: 0,
     thr_ds: 1,

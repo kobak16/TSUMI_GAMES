@@ -3,8 +3,10 @@
     <div class="col-md-4">
       <h1>about me</h1>
       <h6>ユーザー名 : <%= @gamer.username %></h6>
+      <h6>性別 : <%= @gamer.sex_i18n %></h6>
+      <h6>年齢 : <%= @gamer.ages_i18n %></h6>
       <h6>お気に入り : <%= @gamer.favorite %></h6>
-      <%= link_to 'ユーザー情報編集', edit_user_registration_path %>
+      <%= link_to 'ユーザー情報編集', edit_user_registration_path(@gamer.id) %>
 
       <div class="d-flex m-1">
         <div class="follower mr-2">
