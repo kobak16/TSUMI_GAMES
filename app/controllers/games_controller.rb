@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      redirect_to gamer_path(@game.user_id)
+      redirect_to user_path(@game.user_id)
     else
       render 'new'
     end
@@ -52,7 +52,7 @@ class GamesController < ApplicationController
 
   def destroy
     if @game.destroy
-      redirect_to gamer_path(@game.user_id)
+      redirect_to user_path(@game.user_id)
     else
       render 'show'
     end

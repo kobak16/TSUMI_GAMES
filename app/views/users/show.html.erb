@@ -10,13 +10,13 @@
 
       <div class="d-flex m-1">
         <div class="follower mr-2">
-            <%= link_to followers_gamer_path(@gamer.id) do %>
+            <%= link_to followers_user_path(@gamer.id) do %>
               <h4 id="followers" class="text-dark"><%= @gamer.followers.count %></h4>
               <h6>フォロワー</h6>
             <% end %>
         </div> 
         <div class="follow">
-            <%= link_to followings_gamer_path(@gamer.id) do %>
+            <%= link_to followings_user_path(@gamer.id) do %>
                 <h4 class="text-dark"><%= @gamer.followings.count %></h4>
                 <h6>フォロー</h6>
             <% end %>

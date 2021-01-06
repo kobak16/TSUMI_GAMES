@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
 
-    <%= search_form_for(@q, url: gamers_path) do |f| %>
+    <%= search_form_for(@q, url: users_path) do |f| %>
       <%= f.label :username_count, "ユーザー名" %>
       <%= f.search_field :username_cont, {include_blank: '選択なし'} %>
       
@@ -21,7 +21,7 @@
     <% if @gamers.any? %>
       <% @gamers.each do |gamer| %>
         <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-          <%= link_to gamer_path(gamer.id), class: 'text-dark' do %>
+          <%= link_to user_path(gamer.id), class: 'text-dark' do %>
             <h2><%= gamer.username %></h2>
             <h3><%= gamer.sex_i18n %></h3>
             <h3><%= gamer.ages_i18n %></h3>

@@ -54,16 +54,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
    def after_sign_up_path_for(resource)
-    gamer_path(resource)
+    user_path(resource)
    end
 
    def after_update_path_for(resource)
-    gamer_path(resource)
+    user_path(resource)
    end
 
    def check_guest
     if resource.email == 'guest@example.com'
-      redirect_to gamer_path(current_user), alert: 'ゲストユーザーは削除・変更はできません。'
+      redirect_to user_path(current_user), alert: 'ゲストユーザーは削除・変更はできません。'
     end
    end
   # The path used after sign up for inactive accounts.

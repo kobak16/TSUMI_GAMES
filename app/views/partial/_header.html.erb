@@ -4,14 +4,14 @@
     <div class="header-position">
       <div class="d-flex flex-column flex-md-row align-items-center p-3 
                     px-md-4 bg-dark shadow-sm">
-        <%= link_to 'TUMI GAMES', gamer_path(current_user), class: 'navbar-brand my-0 mr-md-auto font-weight-normal text-white' %>
+        <%= link_to 'TUMI GAMES', user_path(current_user), class: 'navbar-brand my-0 mr-md-auto font-weight-normal text-white' %>
         <!--
         <a class="navbar-brand my-0 mr-md-auto font-weight-normal text-white" href="#">TUMI GAMES</a>
         -->
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.username %></a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-            <%= link_to 'マイページ', gamer_path(current_user), class: 'dropdown-item' %>
+            <%= link_to 'マイページ', user_path(current_user), class: 'dropdown-item' %>
             <!-- <a class="dropdown-item" href="gamer_path">マイページ</a> -->
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
             <!-- <a class="dropdown-item" href="destroy_user_session_path">ログアウト</a> -->
@@ -23,16 +23,16 @@
           <!-- <a class="nav-link text-dark" href="#">ゲーム検索</a> -->
           <%= link_to 'ゲーム検索', '/games', class: 'nav-link text-dark' %>
           <!-- <a class="nav-link text-dark" href="#">ユーザー一覧</a> -->
-          <%= link_to 'ユーザー一覧', '/gamers', class: 'nav-link text-dark' %>
+          <%= link_to 'ユーザー一覧', '/users', class: 'nav-link text-dark' %>
           <!-- <a class="nav-link text-dark" href="#">積みゲー追加</a> -->
           <%= link_to '積みゲー追加', new_game_path, class: 'nav-link text-dark' %>    
           <!-- <a class="nav-link text-dark" href="#">マイゲーム</a> -->
-          <%= link_to 'マイゲーム', mygames_gamer_path(current_user.id, sta: 'none'), class: 'nav-link text-dark' %>
-          <%= link_to '気になる', likes_gamer_path(current_user.id), class: 'nav-link text-dark' %>
+          <%= link_to 'マイゲーム', mygames_user_path(current_user.id, sta: 'none'), class: 'nav-link text-dark' %>
+          <%= link_to '気になる', likes_user_path(current_user.id), class: 'nav-link text-dark' %>
           <!-- <a class="nav-link text-dark" href="#">フォロー</a> -->
-          <%= link_to 'フォロー', followings_gamer_path(current_user.id), class: 'nav-link text-dark' %>
+          <%= link_to 'フォロー', followings_user_path(current_user.id), class: 'nav-link text-dark' %>
           <!-- <a class="nav-link text-dark" href="#">フォロワー</a> -->
-          <%= link_to 'フォロワー', followers_gamer_path(current_user.id), class: 'nav-link text-dark' %>
+          <%= link_to 'フォロワー', followers_user_path(current_user.id), class: 'nav-link text-dark' %>
         </nav>
       </div>
     </div>

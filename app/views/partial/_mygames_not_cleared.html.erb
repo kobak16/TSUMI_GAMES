@@ -1,12 +1,12 @@
 <h1>マイゲーム</h1>
 <div class="container">
   <div class= "text-center mx-auto mb-4 h2">
-    <%= link_to '全て', { controller: 'gamers', action: 'mygames', sta: 'none' }, class: 'text-secondary' %>
+    <%= link_to '全て', { controller: 'users', action: 'mygames', sta: 'none' }, class: 'text-secondary' %>
     <span class="text-dark px-2">/</span>
-    <%= link_to '未クリア', { controller: 'gamers', action: 'mygames', sta: 'not_cleared' }, 
+    <%= link_to '未クリア', { controller: 'users', action: 'mygames', sta: 'not_cleared' }, 
             class: 'text-dark font-weight-bold' %>
     <span class="text-dark px-2">/</span>
-    <%= link_to 'クリア済み',{ controller: 'gamers', action: 'mygames', sta: 'cleared' }, class: 'text-secondary' %>
+    <%= link_to 'クリア済み',{ controller: 'users', action: 'mygames', sta: 'cleared' }, class: 'text-secondary' %>
   </div>
   <div class="row">
     <% @not_cleared.each do |game| %>

@@ -4,7 +4,7 @@
       <h2>フォロー一覧</h2>
       <% @gamers.each do |gamer| %>
         <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-          <%= link_to gamer_path(gamer.id), class: 'text-dark' do %>
+          <%= link_to user_path(gamer.id), class: 'text-dark' do %>
             <h3><%= gamer.username %></h3>
           <% end %>
         </div>

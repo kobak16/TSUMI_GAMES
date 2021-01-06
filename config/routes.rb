@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root 'homes#index'
 
-  resources :gamers do
+  resources :users do
     member do
       get :mygames
       get :followings

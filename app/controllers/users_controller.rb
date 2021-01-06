@@ -1,4 +1,4 @@
-class GamersController < ApplicationController
+class UsersController < ApplicationController
   before_action :set_gamer, only: [:show,
                                    :edit,
                                    :update,
