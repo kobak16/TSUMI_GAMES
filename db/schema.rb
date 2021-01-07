@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_02_090222) do
+ActiveRecord::Schema.define(version: 2021_01_07_053156) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_090222) do
     t.float "rate"
     t.text "comment"
     t.integer "status", default: 0, null: false
+    t.string "image"
     t.index ["genre"], name: "index_games_on_genre"
     t.index ["machine"], name: "index_games_on_machine"
     t.index ["title"], name: "index_games_on_title"
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_090222) do
     t.text "favorite"
     t.integer "sex", null: false
     t.integer "ages", null: false
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

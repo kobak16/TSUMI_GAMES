@@ -1,2 +1,2 @@
-$('#follow_form').html("<%= j(render 'partial/follow_form',{ user: @gamer }) %>");
-$("#followers").html('<%= @gamer.followers.count %>');
+$('#follow_form').html("<%= j(render 'partial/follow_form',{ user: @user }) %>");
+$("#followers").html('<%= @user.followers.count %>');

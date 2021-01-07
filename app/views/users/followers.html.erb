@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-4">
       <h2>フォロワー一覧</h2>
-      <% @gamers.each do |gamer| %>
+      <% @users.each do |user| %>
         <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-          <%= link_to user_path(gamer.id), class: 'text-dark' do %>
-            <h3><%= gamer.username %></h3>
+          <%= link_to user_path(user.id), class: 'text-dark' do %>
+            <h3><%= user.username %></h3>
           <% end %>
         </div>
       <% end %>

@@ -62,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
    end
 
    def check_guest
-    if resource.email == 'guest@example.com'
+    if resource.email == 'guest_sample@example.com'
       redirect_to user_path(current_user), alert: 'ゲストユーザーは削除・変更はできません。'
     end
    end

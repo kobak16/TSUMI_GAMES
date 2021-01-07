@@ -9,32 +9,25 @@ class UsersController < ApplicationController
 
 
   def show
-    @not_clear_games = Game.where(user_id: @gamer.id, status: 0)
-    @cleared_games = Game.where(user_id: @gamer.id, status: 1)
-    @like = Like.where(user_id: @gamer.id)
+    @not_clear_games = Game.where(user_id: @user.id, status: 0)
+    @cleared_games = Game.where(user_id: @user.id, status: 1)
+    @like = Like.where(user_id: @user.id)
   end
 
   def index
     if params[:q].present?
       @q = User.ransack(params[:q])
-      @gamers = @q.result(distinct: true).page(params[:page]).per(10)
+      @users = @q.result(distinct: true).page(params[:page]).per(10)
     else
       params[:q] = { sorts: 'created_at desc' }
       @q = User.ransack(params[:q])
-      @gamers = @q.result(distinct: true).page(params[:page]).per(10)
+      @users = @q.result(distinct: true).page(params[:page]).per(10)
     end
   end
 
   def edit; end
 
   def update; end
-  #def update
-  #  if @gamer.update(gamer_params)
-  #    redirect_to gamer_path(current_user)
-  #  else
-  #    render 'edit'
-  #  end
-  #end
 
   def mygames
     @games = Game.where(user_id: current_user.id).page(params[:page]).per(10)
@@ -48,15 +41,15 @@ class UsersController < ApplicationController
   end
 
   def followings
-    @gamers = @gamer.followings
+    @users = @user.followings
   end
 
   def followers
-    @gamers = @gamer.followers
+    @users = @user.followers
   end
 
   def likes
-    @like = Like.find_by(user_id: @gamer.id)
+    @like = Like.find_by(user_id: @user.id)
     if @like != nil
       @games = Game.where(id: @like.game_id)
     end
@@ -65,12 +58,12 @@ class UsersController < ApplicationController
 
   private
 
-  def gamer_params
-    params.require(:user).permit(:username, :email, :sex, :ages)
+  def user_params
+    params.require(:user).permit(:username, :email, :sex, :ages, :image)
   end
 
   def set_gamer
-    @gamer = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
 end

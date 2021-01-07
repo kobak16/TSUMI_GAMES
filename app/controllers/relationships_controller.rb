@@ -1,12 +1,12 @@
 class RelationshipsController < ApplicationController
 
   def create
-    @gamer = User.find(params[:following_id])
-    current_user.follow(@gamer)
+    @user = User.find(params[:following_id])
+    current_user.follow(@user)
   end
 
   def destroy
-    @gamer = User.find(params[:id])
-    current_user.unfollow(@gamer)
+    @user = User.find(params[:id])
+    current_user.unfollow(@user)
   end
 end

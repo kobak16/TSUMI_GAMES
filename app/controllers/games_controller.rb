@@ -61,7 +61,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:title, :genre, :machine, :rate, :comment, :status, :created_at, :updated_at).merge(user_id: current_user.id)
+    params.require(:game).permit(:title, :genre, :machine, :rate, :comment, :status, :image, :created_at, :updated_at).merge(user_id: current_user.id)
   end
 
   def set_games

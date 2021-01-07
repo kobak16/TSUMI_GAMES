@@ -8,6 +8,11 @@
       <a class="text-dark" href="#"><%= @game.genre_i18n %></a>
       <a class="text-dark" href="#"><%= @game.user.username %>
 
+      <% if @game.image? %>
+        <h6>画像:</h6>
+        <%= image_tag @game.image.to_s %>
+      <% end %>
+
       <h5>登録日 : <%= @game.created_at.strftime("%Y年%m月%d日") %></h5>
 
       <% if @game.status == 0 %>

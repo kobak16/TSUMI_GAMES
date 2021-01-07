@@ -2,6 +2,8 @@ class Game < ApplicationRecord
   belongs_to :user
   has_many :likes
 
+  mount_uploader :image, ImageUploader
+
   validates :title, presence: true
   validates :genre, presence: true
   validates :machine, presence: true
