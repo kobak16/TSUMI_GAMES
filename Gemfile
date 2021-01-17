@@ -62,6 +62,7 @@ gem 'ransack'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
+gem 'font-awesome-sass'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,26 +1,33 @@
 <h1>ゲーム詳細</h1>
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
     
+    <div class="col-md-6">
       <a class="text-dark" href="#"><%= @game.title %></a>
       <a class="text-dark" href="#"><%= @game.machine_i18n %></a>
       <a class="text-dark" href="#"><%= @game.genre_i18n %></a>
       <a class="text-dark" href="#"><%= @game.user.username %>
+    </div>
 
+    <div class="col-md-6">
       <% if @game.image? %>
-        <h6>画像:</h6>
-        <%= image_tag @game.image.to_s %>
+        <%= image_tag @game.image.to_s, class: 'game-show-image' %>
+      <% else %>
+        <%= image_tag 'no-image.png', class: 'game-show-image' %>
       <% end %>
-
       <h5>登録日 : <%= @game.created_at.strftime("%Y年%m月%d日") %></h5>
+    </div>
 
+      
+    <div class="col-md-6">
       <% if @game.status == 0 %>
         <h6>未クリア</h6>
       <% else %>
         <h6>クリア日 : <%= @game.updated_at.strftime("%Y年%m月%d日") %></h6>
       <%end %>
-      
+    </div>
+
+    <div class="col-md-6">  
       <% if @game.status == 0 %>
         <%= link_to 'クリア報告', edit_game_path(@game, name: "clear") %> <!-- clear -->
         <%= link_to '編集する', edit_game_path(@game, name: "not_cleared") %> <!-- not_cleared -->
@@ -40,12 +47,13 @@
         <h5 class="text-dark"><%= @game.comment %></h5>
         <%= link_to '編集する', edit_game_path(@game, name: "cleared") %> <!-- cleared -->
       <% end %>
+    </div>
 
       <%= link_to '削除する', game_path(@game), method: :delete, class: 'btn btn-secondary btn-lg' %>
 
       <div id="like_form">
         <%= render "/partial/like" %>
       </div>
-    </div>
+    
   </div>
 </div>

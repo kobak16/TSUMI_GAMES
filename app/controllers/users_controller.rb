@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_gamer, only: [:show,
-                                   :edit,
-                                   :update,
-                                   :mygames,
-                                   :followings,
-                                   :followers,
-                                   :likes]
+  before_action :set_user, only: [:show,
+                                  :edit,
+                                  :update,
+                                  :mygames,
+                                  :followings,
+                                  :followers,
+                                  :likes]
 
 
   def show
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :sex, :ages, :image)
   end
 
-  def set_gamer
+  def set_user
     @user = User.find(params[:id])
   end
 

@@ -18,6 +18,8 @@ const imagePath = (name) => images(name, true)
 
 window.$ = window.jQuery = require('jquery'); 
 require('packs/raty')
+require('packs/slick')
 
 import 'bootstrap'
 import '../src/application.scss'
+// import '@fortawesome/fontawesome-free/js/all'

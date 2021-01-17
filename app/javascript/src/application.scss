@@ -1,9 +1,51 @@
 @import '~bootstrap/scss/bootstrap';
+ 
 
 .home-image {
   background-size: cover;
   width: 100%;
   height: 730px;
   z-index: 0;
+}
+
+.fa-angle-left {
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  margin: auto;
+  font-size: 25px;
+  z-index: 10;
+}
+
+.fa-angle-right {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  margin: auto;
+  font-size: 25px;
+  z-index: 10;
+}
+
+.slide-image {
+  height: 200px;
+  width: 100%;
+}
+
+
+.slide1-image {
+  height: 200px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+.default-image {
+  width: 100px;
+  height: 100px;
+}
+
+.game-show-image {
+  width: 180px;
+  height: 200px;
 }
 
