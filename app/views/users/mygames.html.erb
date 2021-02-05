@@ -1,22 +1,23 @@
-<h1>マイゲーム</h1>
 <div class="container">
-  <div class= "text-center mx-auto mb-4 h2">
-    <%= link_to '全て', { controller: 'users', action: 'mygames', sta: 'none' }, class: 'text-dark font-weight-bold' %>
-    <span class="text-dark px-2">/</span>
-    <%= link_to '未クリア', { controller: 'users', action: 'mygames', sta: 'not_cleared' }, class: 'text-secondary' %>
-    <span class="text-dark px-2">/</span>
-    <%= link_to 'クリア済み', { controller: 'users', action: 'mygames', sta: 'cleared' }, class: 'text-secondary' %>
-  </div>
-  <div class="row">
-    <% @games.each do |game| %>
-      <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-        <%= link_to game_path(game.id) do %>
-          <h3 class="text-dark"><%= game.title %></h3>
-          <h5 class="text-dark"><%= game.machine_i18n %></h5>
-          <h5 class="text-dark"><%= game.genre_i18n%></h5>
-          <h5 class="text-dark"><%= game.user.username %></h5>
-        <% end %>
-      </div>
+
+  <div class="page-title mt-3">
+    <% if @user.id == current_user.id %>
+      <h2>マイゲーム</h2>
+    <% else %>
+      <h2><%= @user.username %>'s ゲーム</h2>
     <% end %>
   </div>
+
+  <div class="row mygames-select justify-content-center my-3">
+    <%= render '/partial/mygames_select' %>
+  </div>
+
+  <div class="row mygame-item">
+    <%= render '/partial/game_items' %>
+  </div>
+
+  <div class="row pagination-position">
+    <%= paginate @games %>
+  </div>
+
 </div>

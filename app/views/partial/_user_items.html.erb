@@ -1,0 +1,23 @@
+<% if @users.any? %>
+  <% @users.each do |user| %>
+    <div class="col-md-4">
+      <%= link_to user_path(user.id), class: 'items-border d-flex m-1' do %>
+        <div class="user-item-image">
+          <% if user.image? %>
+            <%= image_tag user.image.to_s, class: "item-image" %>
+          <% else %>
+            <%= image_tag 'default.png', class: "item-image" %>
+          <% end %>
+        </div>
+        <div class="user-item-text">
+          <h5 class="item-text"><%= user.username %></h5>
+          <h6 class="item-text"><%= user.sex_i18n %></h6>
+          <h6 class="item-text"><%= user.ages_i18n %></h6>
+          <h6 class="item-text"><%= user.favorite %></h6>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <h1 class="mx-auto mt-3">該当するユーザーはいません</h1>
+<% end %>

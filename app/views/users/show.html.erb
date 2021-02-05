@@ -1,162 +1,95 @@
-<div class="container back">
-  <div class="row">
+<div class="container">
 
-    <div class="col-md-4">
-      <% if @user.image? %> 
-        <%= image_tag @user.image.to_s %>
-      <% else %>
-        <%= image_tag 'default.png', class: 'default-image' %>
-      <% end %>
+  <div class="page-title mt-3">
+    <h2>ユーザー詳細</h2>
+  </div>
+
+  <div class="row user-show-top-box d-flex justify-content-center">
+
+    <div class="user-show-top-box-left mt-3 mr-5 ml-5">
+      <div class="user-show-top-box-left-image show-image-border">
+        <% if @user.image? %> 
+          <%= image_tag @user.image.to_s, class: 'user-show-image' %>
+        <% else %>
+          <%= image_tag 'default.png', class: 'user-show-image' %>
+        <% end %>
+      </div>
+      <div class="user-show-top-box-left-relationship d-flex justify-content-center">
+        <div class="follow m-1">
+          <%= link_to(followings_user_path(@user.id), class: "user-show-link") do %>
+            <h4><%= @user.followings.count %></h4>
+            <h6>フォロー</h6>
+          <% end %>
+        </div> 
+        <div class="follower m-1">
+          <%= link_to(followers_user_path(@user.id), class: "user-show-link") do %>
+            <h4><%= @user.followers.count %></h4>
+            <h6>フォロワー</h6>
+          <% end %>
+        </div>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <h1>about me</h1>
-      <h6>ユーザー名 : <%= @user.username %></h6>
-      <h6>性別 : <%= @user.sex_i18n %></h6>
-      <h6>年齢 : <%= @user.ages_i18n %></h6>
-      <h6>お気に入り : <%= @user.favorite %></h6>
-
-      <div class="d-flex m-1">
-      <div class="follower mr-2">
-        <%= link_to followers_user_path(@user.id) do %>
-          <h4 id="followers" class="text-dark"><%= @user.followers.count %></h4>
-          <h6>フォロワー</h6>
-        <% end %>
-      </div> 
-      <div class="follow">
-        <%= link_to followings_user_path(@user.id) do %>
-          <h4 class="text-dark"><%= @user.followings.count %></h4>
-          <h6>フォロー</h6>
+    <div class="user-show-top-box-right col-md-6 mx-5 mt-4">
+      <div class="user-show-top-box-right-info">
+        <p class="info-text">ユーザー名<span class="info-text-insert pr-5"><%= @user.username %></span></p>
+        <p class="info-text">性別<span class="info-text-insert pr-5"><%= @user.sex_i18n %></span></p>
+        <p class="info-text">年齢<span class="info-text-insert pr-5"><%= @user.ages_i18n %></span></p>
+        <p class="info-text">好きなゲーム<span class="info-text-insert pr-5"><%= @user.favorite %></span></p>
+      </div>
+      <div class="btn-position">
+        <% if @user.id == current_user.id %>
+          <%= link_to 'ユーザー情報編集', edit_user_registration_path(@user.id), class: 'btn-black' %>
+        <% else %>
+          <div id="follow_form">
+            <%= render "/partial/follow_form" %>
+          </div>
         <% end %>
       </div>
     </div>
-      <div id="follow_form">
-        <%= render "/partial/follow_form" %>
-      </div>
-      <h5><%= link_to 'ユーザー情報編集', edit_user_registration_path(@user.id) %></h5>
-    </div>
 
-    <div class="col-md-4">
-      <h3>未クリア : <%= @not_clear_games.count %></h3>
-      <h3>クリア済み : <%= @cleared_games.count %></h3>
-      <h3>気になる : <%= @like.count %>
-    </div>
+  </div>
 
-  <!-- 未クリアスライド -->
-    <div class="col-md-6">
-      <% if @not_clear_games.any? %>
-        <h6>未クリア : <%= @not_clear_games.count %></h6>
-        <% if @not_clear_games.count >= 3 %>
-          <div class="slider3">
-            <% @not_clear_games.each do |games| %>
-              <% if games.image? %>
-                <div class="col-md-2">
-                  <%= image_tag games.image.to_s, class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% else %>
-                <div class="col-md-2">
-                  <%= image_tag 'no-image.png', class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% end %>
-            <% end %>
+  <div class="row user-show-bottom-box d-flex justify-content-center mt-3">
+
+    <div class="user-show-bottom-box-left col-md-5 mx-3">
+      <% if @not_cleared_games.any? %>
+        <h6>未クリア（<%= link_to '一覧へ', mygames_user_path(@user.id, sta: 'not_cleared'), class: 'user-show-link' %>）</h6>
+        <% if @not_cleared_games.count >= 3 %>
+          <div class="slider">
+            <%= render '/partial/user_show_not_cleared' %>
           </div>
-        <% elsif @not_clear_games.count == 2 %>
-          <div class="slider2">
-            <% @not_clear_games.each do |games| %>
-              <% if games.image? %>
-                <div class="col-md-4">
-                  <%= image_tag games.image.to_s, class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% else %>
-                <div class="col-md-4">
-                  <%= image_tag 'no-image.png', class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        <% elsif @not_clear_games.count == 1 %>
-          <div class="slider1">
-            <% @not_clear_games.each do |games| %>
-              <% if games.image? %>
-                <div class="col-md-4">
-                  <%= image_tag games.image.to_s, class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% else %>
-                <div class="col-md-4">
-                  <%= image_tag 'no-image.png', class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% end %>
-            <% end %>
+        <% elsif @not_cleared_games.count <= 2 %>
+          <div class="d-flex justify-content-center">
+            <%= render '/partial/user_show_not_cleared' %>
           </div>
         <% end %>
       <% else %>
-        <h5>未クリアのゲームはありません</h5>
+        <div class="btn-position my-5">
+          <h5>未クリアのゲームはありません</h5>
+        </div>
       <% end %>
     </div>
-  
-  <!-- クリア済みスライド -->
-    <div class="col-md-6">
+    
+    <div class="user-show-bottom-box-right col-md-5 mx-3">
       <% if @cleared_games.any? %>
-        <h6>クリア済み : <%= @cleared_games.count %></h6>
+        <h6>クリア済み（<%= link_to '一覧へ', mygames_user_path(@user.id, sta: 'cleared'), class: 'user-show-link' %>）</h6>
         <% if @cleared_games.count >= 3 %>
-          <div class="slider3">
-            <% @cleared_games.each do |games| %>
-              <% if games.image? %>
-                <div class="col-md-2">
-                  <%= image_tag games.image.to_s, class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% else %>
-                <div class="col-md-2">
-                  <%= image_tag 'no-image.png', class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% end %>
-            <% end %>
+          <div class="slider">
+            <%= render '/partial/user_show_cleared' %>
           </div>
-        <% elsif @cleared_games.count == 2 %>
-          <div class="slider2">
-            <% @cleared_games.each do |games| %>
-              <% if games.image? %>
-                <div class="col-md-4">
-                  <%= image_tag games.image.to_s, class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% else %>
-                <div class="col-md-4">
-                  <%= image_tag 'no-image.png', class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        <% elsif @cleared_games.count == 1 %>
-          <div class="slider1">
-            <% @cleared_games.each do |games| %>
-              <% if games.image? %>
-                <div class="col-md-4">
-                  <%= image_tag games.image.to_s, class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% else %>
-                <div class="col-md-4">
-                  <%= image_tag 'no-image.png', class: 'slide-image' %>
-                  <p><%= games.title %></p>
-                </div>
-              <% end %>
-            <% end %>
+        <% elsif @cleared_games.count <= 2 %>
+          <div class="d-flex justify-content-center">
+            <%= render '/partial/user_show_cleared' %>
           </div>
         <% end %>
       <% else %>
-        <h5>クリア済みゲームはありません</h5>
+        <div class="btn-position my-5">
+          <h5>クリア済みゲームはありません</h5>
+        </div>
       <% end %>
     </div>
 
   </div>
+
 </div>

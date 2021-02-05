@@ -1,19 +1,15 @@
-<h1>気になる一覧</h1>
 <div class="container">
-  <div class="row">
-  <% if @like != nil %>
-    <% @games.each do |game| %>
-      <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-        <%= link_to game_path(game.id) do %>
-          <h3 class="text-dark"><%= game.title %></h3>
-          <h5 class="text-dark"><%= game.machine_i18n %></h5>
-          <h5 class="text-dark"><%= game.genre_i18n%></h5>
-          <h5 class="text-dark"><%= game.user.username %></h5>
-        <% end %>
-      </div>
-    <% end %>
-  <% else %>
-    <h2>気になるゲームはありません</h2>
-  <% end %>
+
+  <div class="page-title mt-3">
+    <h2>気になるゲーム</h2>
   </div>
+
+  <div class="row likes-list mt-4">
+    <%= render '/partial/game_items' %>
+  </div>
+
+  <div class="row index-page mt-3">
+    <%= paginate @games %>
+  </div>
+
 </div>

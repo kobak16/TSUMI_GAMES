@@ -1,0 +1,5 @@
+<p class="info-text">タイトル<span class="info-text-insert pr-5"><%= @game.title %></span></p>
+<p class="info-text">プラットフォーム<span class="info-text-insert pr-5"><%= @game.machine_i18n %></span></p>
+<p class="info-text">ジャンル<span class="info-text-insert pr-5"><%= @game.genre_i18n %></span></p>
+<p class="info-text">ユーザー名<span class="info-text-insert pr-5"><%= @game.user.username %></span></p>
+<p class="info-text">登録日<span class="info-text-insert pr-5"><%= @game.created_at.strftime("%Y年%m月%d日") %></span></p>

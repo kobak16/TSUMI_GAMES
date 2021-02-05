@@ -1,39 +1,55 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <h2>情報登録</h2>
-      <h3>タイトル : <%= @game.title %></h3>  
-      <h3>ハード : <%= @game.machine_i18n %></h3>
-      <h3>ジャンル : <%= @game.genre_i18n %></h3>
 
-      <%= form_with(model: @game, local: true) do |f|  %>
-        <div class="form-group" id="star">
-          <%= f.label :rate,  '評価' ,class: 'col-md-3 col-form-label' %>
-          <%= f.hidden_field :rate, id: :review_star %>
-        </div>
-
-        <script>
-        $('#star').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          scoreName: 'game[rate]',
-          half: true,
-        });
-        </script> 
-        
-        <div class="field">
-          <%= f.label :comment %><br />
-          <%= f.text_field :comment, autofocus: true %>
-        </div>
-
-        <%= f.hidden_field :status, :value => 1 %>
-
-        <%= f.submit '登録', class: 'btn btn-secondary btn-lg', name: 'clear' %>
-      <% end %>
-
-      <%= link_to "Back", :back %>
-    </div>
+  <div class="page-title mt-3 mb-5">
+    <h2>ゲームクリア報告</h2>
   </div>
+
+  <div class="row d-flex justify-content-center">
+
+    <div class="clear-edit-box-left mx-5">
+      <div class="clear-edit-box-left-image show-image-border">
+        <%= render "/partial/game_show_image" %>
+      </div>
+    </div>
+
+    <div class="clear-edit-box-right col-md-6 mx-5 mt-3">
+      <div class="clear-edit-box-right-info">
+        <%= render '/partial/game_info' %>
+      </div>
+
+      <div class="clear-edit-box-right-review">
+        <%= form_with(model: @game, local: true) do |f| %>
+          <%= f.hidden_field :status, :value => 1 %>
+
+          <div class="clear-edit-box-right-review-field">
+            <div class="form-group" id="star">
+              <%= f.label :rate, '評価' ,class: 'clear-edit-box-right-review-field-text h5' %><br />
+              <%= f.hidden_field :rate, id: :review_star %>
+            </div>
+            <script>
+            $('#star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              scoreName: 'game[rate]',
+              half: true,
+            });
+            </script>
+          </div>
+
+          <div class="clear-edit-box-right-review-field">
+            <%= f.label :comment, 'コメント' ,class: 'clear-edit-box-right-review-field-text h5' %><br />
+            <%= f.text_area :comment, autofocus: true, class: 'review-comment' %>
+          </div>
+
+          <div class="game-edit-box-field btn-position">
+            <%= f.submit '登録', class: 'btn-red m-3', name: 'clear' %>
+            <%= link_to "Back", :back, class: "btn-black m-3" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>  
 </div>

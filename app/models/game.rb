@@ -17,7 +17,8 @@ class Game < ApplicationRecord
     puzzle: 5,
     rpg: 6,
     love: 7,
-    another: 8
+    sports: 8,
+    another: 9
   }, _prefix: true
 
   enum machine: {

@@ -1,54 +1,68 @@
-<h2>Sign up</h2>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  <div class="sign-title">
+    <h1>新規登録</h1>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.collection_radio_buttons :sex, User.sexes_i18n, :first , :last %>
-  </div>
+    <div class="row edit-signup-box d-flex justify-content-center">  
 
-  <div class="field">
-    <%= f.label :ages %><br />
-    <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]}, {include_blank: '選択なし'} %>
-  </div>
+      <div class="edit-signup-box-left px-5">
+        <div class="edit-signup-box-left-field">
+          <%= f.label :username, "ユーザー名", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "edit-signup-box-left-field-form" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.file_field :image %>
-  </div>
+        <div class="edit-signup-box-left-field">
+          <%= f.label :email, "メールアドレス", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit-signup-box-left-field-form" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :favorite %><br />
-    <%= f.text_field :favorite, autofocus: true %>
-  </div>
+        <div class="edit-signup-box-left-field">
+          <%= f.label :sex, "性別", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.collection_radio_buttons :sex, User.sexes_i18n, :first , :last %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <div class="edit-signup-box-left-field">
+          <%= f.label :ages, "年齢", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]}, {include_blank: '選択なし'} %>
+        </div>
+      </div>
+      
+      <div class="edit-signup-box-right px-5">
+        <div class="edit-signup-box-left-field">
+          <%= f.label :image, "アイコン", class: "edit-signup-box-right-field-text" %><br />
+          <%= f.file_field :image %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+        <div class="edit-signup-box-right-field">
+          <%= f.label :favorite, "好きなゲーム", class: "edit-signup-box-right-field-text" %><br />
+          <%= f.text_field :favorite, autofocus: true, class: "edit-signup-box-left-field-form" %>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+        <div class="edit-signup-box-right-field">
+          <%= f.label :password, "パスワード", class: "edit-signup-box-right-field-text" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "edit-signup-box-right-field-form" %>
+        </div>
 
-<%= render "devise/shared/links" %>
+        <div class="edit-signup-box-right-field">
+          <%= f.label :password_confirmation, "パスワード確認", class: "edit-signup-box-right-field-text" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "edit-signup-box-right-field-form" %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="btn-position mt-5">
+      <%= f.submit "新規登録", class: "btn-red m-3" %>
+      <%= link_to "Back", :back, class: "btn-black m-3" %>
+    </div>
+
+  <% end %>
+
+</div>

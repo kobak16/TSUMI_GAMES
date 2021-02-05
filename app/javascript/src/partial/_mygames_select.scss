@@ -1,0 +1,13 @@
+.mygame-select {
+  &-list {
+    color: rgb(150, 150, 150);
+    &:hover {
+      text-decoration: none;
+      color: rgb(99, 99, 99)
+    }
+  }
+  &-now {
+    font-weight: bold;
+    color: #343a40;
+  }
+}

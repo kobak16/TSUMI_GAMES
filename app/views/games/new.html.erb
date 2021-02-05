@@ -1,25 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <%= form_with(model: @game, local: true) do |f| %>
-        <h1>積みゲー登録</h1>
+<div class="page-title mt-3 mb-5">  
+  <h2>積みゲー登録</h2>
+</div>
 
-        <h3>タイトル</h3>
-        <%= f.text_field :title %>
+<div class="edit-login-box">
 
-        <h3>ハード</h3>
-        <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, 
-              {include_blank: '選択なし'} %>
+  <%= form_with(model: @game, local: true) do |f| %>
 
-        <h3>ジャンル</h3>
-        <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, 
-              {include_blank: '選択なし'}%>
-        
-        <h3>画像</h3>
-        <%= f.file_field :image %>
-
-        <%= f.submit '積みゲーを追加', class: 'btn btn-secondary btn-lg' %>
-      <% end %>
+    <div class="edit-login-box-field">
+      <%= f.label :title, 'タイトル', class: 'edit-login-box-field-text' %><br />
+      <%= f.text_field :title, class: 'edit-login-box-field-form' %>
     </div>
-  </div>
+
+    <div class="edit-login-box-field">
+      <%= f.label :machine, 'プラットフォーム', class: 'edit-login-box-field-text' %><br />
+      <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, 
+                {include_blank: '選択なし'} %>
+    </div>
+
+    <div class="edit-login-box-field">
+      <%= f.label :genre, 'ジャンル', class: 'edit-login-box-field-text' %><br />
+      <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, 
+                {include_blank: '選択なし'}%>
+    </div>
+
+    <div class="edit-login-box-field">        
+      <%= f.label :image, '画像', class: 'edit-login-box-field-text' %><br />
+      <%= f.file_field :image %>
+    </div>
+
+    <div class="edit-login-box-field pt-3">
+      <%= f.submit '積みゲーを追加', class: 'btn-red' %>
+    </div>
+
+  <% end %>
+
 </div>

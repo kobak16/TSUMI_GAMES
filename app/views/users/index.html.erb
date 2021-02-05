@@ -1,38 +1,41 @@
-<h1>index</h1>
 <div class="container">
-  <div class="row">
 
-    <%= search_form_for(@q, url: users_path) do |f| %>
-      <%= f.label :username_count, "ユーザー名" %>
-      <%= f.search_field :username_cont, {include_blank: '選択なし'} %>
-      
-      <%= f.label :sex_eq, '性別' %>
-      <%= f.select :sex_eq, User.sexes.map{|k, v| [User.sexes_i18n[k], v]}, {include_blank: '選択なし'} %>
-     
-      <%= f.label :ages_eq,  '年齢' %>
-      <%= f.select :ages_eq, User.ages.map{|k, v| [User.ages_i18n[k], v]}, {include_blank: '選択なし'} %>
-      
-      <%= f.submit "検索" %>
-
-      <%= f.label :sorts, '並び替え' %>
-      <%= f.select :sorts, { '登録の新しい順': 'created_at desc', '登録の古い順': 'created_at asc', '五十音順': 'username asc' }, { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} %>
-    <% end %>
-
-    <% if @users.any? %>
-      <% @users.each do |user| %>
-        <div class="col-md-4 bg-white border dorder-dark rounded m-1 d-block">
-          <%= link_to user_path(user.id), class: 'text-dark' do %>
-            <h2><%= user.username %></h2>
-            <h3><%= user.sex_i18n %></h3>
-            <h3><%= user.ages_i18n %></h3>
-            <h5 class="text-dark"><%= user.favorite %></h5>
-          <% end %>
-        </div>
-      <% end %>
-    <% else %>
-      <h1><%= '検索結果がありません。' %></h1>
-    <% end %>
-
+  <div class="page-title mt-3">
+    <h2>ユーザー一覧・検索</h2>
   </div>
-  <%= paginate @users %>
+
+  <div class="row">
+  
+    <%= search_form_for(@q, url: users_path) do |f| %>
+      <div class="user-search">
+        <%= f.label :username_count, "ユーザー名" %>
+        <%= f.search_field :username_cont, {include_blank: '選択なし', class: "search-text-form"} %>
+
+        <%= f.label :favorite_count, "好きなゲーム", class: "ml-2" %>
+        <%= f.search_field :favorite_cont, {include_blank: '選択なし', class: "search-text-form"} %>
+        
+        <%= f.label :sex_eq, '性別', class: "ml-2" %>
+        <%= f.select :sex_eq, User.sexes.map{|k, v| [User.sexes_i18n[k], v]}, {include_blank: '選択なし'} %>
+      
+        <%= f.label :ages_eq,  '年齢', class: "ml-2" %>
+        <%= f.select :ages_eq, User.ages.map{|k, v| [User.ages_i18n[k], v]}, {include_blank: '選択なし'} %>
+        
+        <%= f.submit "検索", class: "btn-black ml-3" %>
+      </div>
+
+      <div class="user-sort mt-2">
+        <%= f.label :sorts, '並び替え： ' %>
+        <%= f.select :sorts, { '登録の新しい順': 'created_at desc', '登録の古い順': 'created_at asc', '五十音順': 'username asc' }, { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row user-items mt-1">
+    <%= render '/partial/user_items' %>
+  </div>
+
+  <div class="row pagination-position">
+    <%= paginate @users %>
+  </div>
+
 </div>

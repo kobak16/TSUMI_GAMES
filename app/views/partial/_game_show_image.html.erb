@@ -1,0 +1,5 @@
+<% if @game.image? %>
+  <%= image_tag @game.image.to_s, class: 'game-show-image' %>
+<% else %>
+  <%= image_tag 'no-image.png', class: 'game-show-image' %>
+<% end %>

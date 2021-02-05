@@ -1,68 +1,62 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  <div class="page-title mt-3 mb-5 pb-3">
+    <h2>ユーザー情報編集</h2>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.collection_radio_buttons :sex, User.sexes_i18n, :first , :last %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :ages %><br />
-    <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]}, {include_blank: '選択なし'} %>
-  </div>
+    <div class="row edit-signup-box d-flex justify-content-center">
+      <div class="edit-signup-box-left px-5">
+        <div class="field edit-signup-box-left-field">
+          <%= f.label :username, "ユーザー名", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "edit-signup-box-left-field-form" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :favorite %><br />
-    <%= f.text_field :favorite, autofocus: true %>
-  </div>
+        <div class="field edit-signup-box-left-field">
+          <%= f.label :email, "メールアドレス", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit-signup-box-left-field-form" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.file_field :image %>
-  </div>
+        <div class="field edit-signup-box-left-field">
+          <%= f.label :sex, "性別", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.collection_radio_buttons :sex, User.sexes_i18n, :first , :last %>
+        </div>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div class="edit-signup-box-right px-5">
+        <div class="field edit-signup-box-left-field">
+          <%= f.label :ages, "年齢", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]}, {include_blank: '選択なし'} %>
+        </div>
+
+        <div class="field edit-signup-box-left-field">
+          <%= f.label :favorite, "好きなゲーム", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.text_field :favorite, autofocus: true, class: "edit-signup-box-left-field-form" %>
+        </div>
+
+        <div class="field edit-signup-box-left-field">
+          <%= f.label :image, "アイコン", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.file_field :image %>
+        </div>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+      <%= f.submit '更新する', class: 'btn-blue m-3' %>
+      <%= link_to "Back", :back, class: "btn-black m-3" %>
+    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <div class="btn-position mt-4">
+    <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "削除しますか？" }, method: :delete, class: "btn-black" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

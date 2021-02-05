@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @not_clear_games = Game.where(user_id: @user.id, status: 0)
+    @not_cleared_games = Game.where(user_id: @user.id, status: 0)
     @cleared_games = Game.where(user_id: @user.id, status: 1)
     @like = Like.where(user_id: @user.id)
   end
@@ -17,11 +17,11 @@ class UsersController < ApplicationController
   def index
     if params[:q].present?
       @q = User.ransack(params[:q])
-      @users = @q.result(distinct: true).page(params[:page]).per(10)
+      @users = @q.result(distinct: true).page(params[:page]).per(9)
     else
       params[:q] = { sorts: 'created_at desc' }
       @q = User.ransack(params[:q])
-      @users = @q.result(distinct: true).page(params[:page]).per(10)
+      @users = @q.result(distinct: true).page(params[:page]).per(9)
     end
   end
 
@@ -29,30 +29,28 @@ class UsersController < ApplicationController
 
   def update; end
 
+
   def mygames
-    @games = Game.where(user_id: current_user.id).page(params[:page]).per(10)
+    @games = Game.where(user_id: @user.id).page(params[:page]).per(9)
     if params[:sta] == 'not_cleared'
-      @not_cleared = Game.where(user_id: current_user.id, status: 0).page(params[:page]).per(10)
-      render '/partial/_mygames_not_cleared'
+      @games = Game.where(user_id: @user.id, status: 0).page(params[:page]).per(9)
+      render :mygames
     elsif params[:sta] == 'cleared'
-      @cleared = Game.where(user_id: current_user.id, status: 1).page(params[:page]).per(10)
-      render '/partial/_mygames_cleared'
+      @games = Game.where(user_id: @user.id, status: 1).page(params[:page]).per(9)
+      render :mygames
     end
   end
 
   def followings
-    @users = @user.followings
+    @users = @user.followings.page(params[:page]).per(9)
   end
 
   def followers
-    @users = @user.followers
+    @users = @user.followers.page(params[:page]).per(9)
   end
 
   def likes
-    @like = Like.find_by(user_id: @user.id)
-    if @like != nil
-      @games = Game.where(id: @like.game_id)
-    end
+    @games = Game.joins(:likes).where(likes: {user_id: @user.id}).page(params[:page]).per(9)
   end
   
 

@@ -1,47 +1,66 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <h2>情報編集</h2>
-      <%= form_with(model: @game, local: true) do |f|  %>
-        <h3>タイトル</h3>
-        <%= f.text_field :title, class: 'form-control' %>
 
-        <h3>ハード</h3>
-        <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, {}, 
-            class: 'form-control col-md-6' %>
-
-        <h3>ジャンル</h3>
-        <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, {}, 
-            class: 'form-control col-md-6' %>
-
-        <h3>画像</h3>
-        <%= f.file_field :image %>
-
-        <div class="form-group" id="star">
-          <%= f.label :rate,  '評価' ,class: 'col-md-3 col-form-label' %>
-          <%= f.hidden_field :rate, id: :review_star %>
-        </div>
-
-        <script>
-        $('#star').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          scoreName: 'game[rate]',
-          half: true,
-        });
-        </script> 
-        
-        <div class="field">
-          <%= f.label :comment %><br />
-          <%= f.text_field :comment, autofocus: true %>
-        </div>
-
-        <%= f.submit '変更する', class: 'btn btn-secondary btn-lg', name: 'cleared' %>
-      <% end %>
-
-      <%= link_to "Back", :back %>
-    </div>
+  <div class="page-title mt-3 mb-4">
+    <h2>ゲーム情報編集</h2>
   </div>
+
+  <%= form_with(model: @game, local: true) do |f|  %>
+
+    <div class="row edit-signup-box d-flex justify-content-center">
+
+      <div class="edit-signup-box-left m-5">
+        <div class="edit-signup-box-left-field">
+          <%= f.label :title, "タイトル", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.text_field :title, class: 'edit-signup-box-left-field-form' %>
+        </div>
+
+        <div class="edit-signup-box-left-field">
+          <%= f.label :machine, "プラットフォーム", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, {}, 
+                    class: 'edit-signup-box-left-field-form' %>
+        </div>
+
+        <div class="edit-signup-box-left-field">
+          <%= f.label :genre, "ジャンル", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, {}, 
+                    class: 'edit-signup-box-left-field-form' %>
+        </div>
+
+        <div class="edit-signup-box-left-field">
+          <%= f.label :image, "画像", class: "edit-signup-box-left-field-text" %><br />
+          <%= f.file_field :image %>
+        </div>
+      </div>
+
+      <div class="edit-signup-box-right col-md-4 m-5">
+        <div class="edit-signup-box-right-field">
+          <div class="form-group" id="star">
+            <%= f.label :rate, '評価' ,class: 'edit-signup-box-right-field-text' %><br />
+            <%= f.hidden_field :rate, id: :review_star %>
+          </div>
+          <script>
+          $('#star').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'game[rate]',
+            half: true,
+          });
+          </script> 
+        </div>    
+        <div class="edit-signup-box-right-field">
+          <%= f.label :comment, 'コメント' ,class: 'edit-signup-box-right-field-text' %><br />
+          <%= f.text_area :comment, autofocus: true, class: 'review-comment' %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="btn-position mt-3">
+      <%= f.submit '変更する', class: 'btn-blue m-2', name: 'cleared' %>
+      <%= link_to "Back", :back, class: "btn-black m-2" %>
+    </div>
+  <% end %>
+
 </div>

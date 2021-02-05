@@ -1,26 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <h2>情報編集</h2>
-      <%= form_with(model: @game, local: true) do |f|  %>
-        <h3>タイトル</h3>
-        <%= f.text_field :title, class: 'form-control' %>
+<div class="page-title mt-3 mb-5">
+  <h2>ゲーム情報編集</h2>
+</div>
 
-        <h3>ハード</h3>
-        <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, {}, 
-            class: 'form-control col-md-6' %>
+<div class="edit-login-box">
+  <%= form_with(model: @game, local: true) do |f|  %>
 
-        <h3>ジャンル</h3>
-        <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, {}, 
-            class: 'form-control col-md-6' %> 
-
-        <h3>画像</h3>
-        <%= f.file_field :image %>
-        
-        <%= f.submit '変更する', class: 'btn btn-secondary btn-lg', name: 'not_clear' %>
-      <% end %>
-
-      <%= link_to "Back", :back %>
+    <div class="edit-login-box-field">
+      <%= f.label :title, "タイトル", class: "edit-login-box-field-text" %><br />
+      <%= f.text_field :title, class: 'edit-login-box-field-form' %>
     </div>
-  </div>
+
+    <div class="edit-login-box-field">
+      <%= f.label :machine, "プラットフォーム", class: "edit-login-box-field-text" %><br />
+      <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, {}, 
+              class: 'edit-login-box-field-form' %>
+    </div>
+
+    <div class="edit-login-box-field">
+      <%= f.label :genre, "ジャンル", class: "edit-login-box-field-text" %><br />
+      <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, {}, 
+              class: 'edit-login-box-field-form' %>
+    </div>
+
+    <div class="edit-login-box-field">
+      <%= f.label :image, "画像", class: "edit-login-box-field-text" %><br />
+      <%= f.file_field :image %>
+    </div>
+        
+    <div class="edit-login-box-field pt-4">
+      <%= f.submit '変更する', class: 'btn-blue m-3', name: 'not_clear' %>
+      <%= link_to "Back", :back, class: "btn-black m-3" %>
+    </div>
+
+  <% end %>
+
 </div>

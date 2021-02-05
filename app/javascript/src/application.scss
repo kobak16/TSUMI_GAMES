@@ -1,13 +1,201 @@
 @import '~bootstrap/scss/bootstrap';
- 
 
-.home-image {
-  background-size: cover;
-  width: 100%;
-  height: 730px;
-  z-index: 0;
+@import 'homes/index.scss';
+
+@import 'users/show.scss';
+
+@import 'partial/mygames_select';
+@import 'partial/game_show_image';
+
+// title
+.page-title {
+  text-align: center;
+}
+.sign-title {
+  padding-top: 2rem;
+  margin-bottom: 4rem;
+  text-align: center;
 }
 
+// btn
+.btn-position {
+  text-align: center;
+}
+.btn-black {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border:1px solid rgb(49, 49, 49);
+  color: rgb(49, 49, 49);
+  background-color: transparent;
+  &:hover {
+    text-decoration: none;
+    color: rgb(240, 240, 240);
+    background-color: rgb(49, 49, 49);
+  }
+}
+.btn-white {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border:1px solid rgb(49, 49, 49);
+  color: rgb(240, 240, 240);
+  background-color: rgb(49, 49, 49);
+  &:hover {
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+    background-color: transparent;
+  }
+}
+.btn-red {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border:1px solid rgb(49, 49, 49);
+  color: rgb(49, 49, 49);
+  background-color: transparent;
+  &:hover {
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+    border: 1px solid rgb(255, 0, 0);
+  }
+}
+.btn-blue {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border:1px solid rgb(49, 49, 49);
+  color: rgb(49, 49, 49);
+  background-color: transparent;
+  &:hover {
+    text-decoration: none;
+    color: rgb(0, 0, 255);
+    border: 1px solid rgb(0, 0, 255);
+  }
+}
+.home-btn {
+  display: inline-block;
+  margin: 1rem;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border:1px solid rgb(240, 240, 240);
+  color: rgb(240, 240, 240);
+  background-color: transparent;
+  &:hover {
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+    background-color: rgb(240, 240, 240);
+  }
+}
+
+// pagination
+.pagination li a {          
+  border: none;
+  color: #696969;
+}
+.pagination .active a {     
+  background: #93c9ff;
+  border-radius: 15px;
+}
+.pagination li a:hover {        
+  border-radius: 15px;
+}
+.index-page {
+  margin-top: 1rem;
+  justify-content: center;
+}
+.pagination-position {
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+// items
+.items-border {
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 15px;
+  &:hover {
+    text-decoration: none;
+    box-shadow: 10px 5px 5px rgb(88, 87, 87);
+  }
+}
+.item-image {
+  margin: 0.5rem;
+  width: 6rem;
+  height: 8rem;
+}
+.item-text {
+  color: rgb(70, 70, 70);
+  margin: 0.5rem;
+}
+
+// image-border
+.show-image-border {
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+  padding: 2rem;
+}
+
+// info-text
+.info-text {
+  color: #343a40;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  padding-left: 2rem;
+  &-insert {
+    float: right;
+    font-size: 1.25rem;
+  }
+}
+
+// index-search
+.search-text-form {
+  width: 18rem;
+}
+
+// edit login signup
+.edit-login-box {
+  text-align: center;
+  &-field {
+    margin-bottom: 2rem;
+    &-text {
+      font-size: 1.5rem;
+    }
+    &-form {
+      width: 20rem;
+    }
+  }
+}
+.edit-signup-box {
+  text-align: center;
+  &-left-field {
+    margin-bottom: 1rem;
+    &-text {
+      font-size: 1.5rem;
+    }
+    &-form {
+      width: 20rem;
+    }
+  }
+  &-right-field {
+    margin-bottom: 1rem;
+    &-text {
+      font-size: 1.5rem;
+    }
+    &-form {
+      width: 20rem;
+    }
+  }
+}
+
+// review
+.review-comment {
+  height: 10rem;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 10px;
+  width: 100%;
+}
+
+// slick.js
 .fa-angle-left {
   position: absolute;
   top: 50%;
@@ -26,26 +214,8 @@
   z-index: 10;
 }
 
+// _user_show slick
 .slide-image {
   height: 200px;
   width: 100%;
 }
-
-
-.slide1-image {
-  height: 200px;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-
-.default-image {
-  width: 100px;
-  height: 100px;
-}
-
-.game-show-image {
-  width: 180px;
-  height: 200px;
-}
-

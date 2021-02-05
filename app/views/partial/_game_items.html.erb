@@ -1,0 +1,23 @@
+<% if @games.any? %>
+  <% @games.each do |game| %>
+    <div class="col-md-4">
+      <%= link_to(game_path(game.id), class: "items-border d-flex m-1") do %>
+        <div class="game-item-image">
+          <% if game.image? %>
+            <%= image_tag game.image.to_s, class: "item-image" %>
+          <% else %>
+            <%= image_tag 'no-image.png', class: "item-image" %>
+          <% end %>
+        </div>
+        <div class="game-item-text">
+          <h5 class="item-text"><%= game.title %></h5>
+          <h6 class="item-text"><%= game.machine_i18n %></h6>
+          <h6 class="item-text"><%= game.genre_i18n%></h6>
+          <h6 class="item-text"><%= game.user.username %></h6>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <h1 class="mx-auto mt-3">該当するゲームはありません</h1>
+<% end %>

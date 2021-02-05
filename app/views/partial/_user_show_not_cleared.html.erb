@@ -1,0 +1,13 @@
+<% @not_cleared_games.each do |games| %>
+  <% if games.image? %>
+    <div class="col-5">
+      <%= image_tag games.image.to_s, class: 'slide-image' %>
+      <p><%= games.title %></p>
+    </div>
+  <% else %>
+    <div class="col-5">
+      <%= image_tag 'no-image.png', class: 'slide-image' %>
+      <p><%= games.title %></p>
+    </div>
+  <% end %>
+<% end %>

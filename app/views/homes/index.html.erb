@@ -1,2 +1,11 @@
-<%= image_pack_tag 'IMG_0903.jpg', class: 'home-image' %>
-<!-- <div class="home-image"></div> -->
+<div class="home-top">
+  <div class="home-top-text">
+    <h1>TSUMI GAMES</h1>
+    <h3>気がつくと溜まっている積みゲー<br>TSUMI GAMESで管理・共有しませんか</h3>
+  </div>
+  <div class="home-top-btn d-flex justify-content-center">
+    <%= link_to '新規登録', new_user_registration_path, class: 'home-btn' %>
+    <%= link_to 'ログイン', new_user_session_path, class: 'home-btn' %>
+    <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'home-btn' %>
+  </div>
+</div>

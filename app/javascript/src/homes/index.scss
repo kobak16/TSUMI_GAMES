@@ -1,0 +1,15 @@
+.home-top {
+  background-image: linear-gradient(to bottom, rgba(51, 51, 51, 0.5) 40%, rgba(121, 121, 121, 0.5) 60%, rgba(245, 245, 245, 0.5) 80%),url('../images/home-top.jpg');
+  background-size: cover;
+  height: 730px;
+  width: 100%;
+  &-text {
+    color: rgb(240, 240, 240);
+    text-align: center;
+    padding-top: 10rem;
+    margin-bottom: 1rem;
+    h1 {
+      margin-bottom: 1rem;
+    }
+  }
+}
