@@ -31,8 +31,9 @@ class UsersController < ApplicationController
 
 
   def mygames
-    @games = Game.where(user_id: @user.id).page(params[:page]).per(9)
-    if params[:sta] == 'not_cleared'
+    if params[:sta] == 'all'
+      @games = Game.where(user_id: @user.id).page(params[:page]).per(9)
+    elsif params[:sta] == 'not_cleared'
       @games = Game.where(user_id: @user.id, status: 0).page(params[:page]).per(9)
       render :mygames
     elsif params[:sta] == 'cleared'

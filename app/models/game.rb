@@ -1,12 +1,14 @@
 class Game < ApplicationRecord
   belongs_to :user
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 
   validates :title, presence: true
   validates :genre, presence: true
   validates :machine, presence: true
+  validates :rate, presence: false
+  validates :comment, presence: false, length: { maximum:50 }
 
   enum genre: {
     action: 0,

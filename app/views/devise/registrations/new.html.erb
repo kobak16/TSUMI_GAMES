@@ -5,7 +5,6 @@
   </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="row edit-signup-box d-flex justify-content-center">  
 
@@ -13,21 +12,41 @@
         <div class="edit-signup-box-left-field">
           <%= f.label :username, "ユーザー名", class: "edit-signup-box-left-field-text" %><br />
           <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "edit-signup-box-left-field-form" %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:username).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
 
         <div class="edit-signup-box-left-field">
           <%= f.label :email, "メールアドレス", class: "edit-signup-box-left-field-text" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit-signup-box-left-field-form" %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:email).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
 
         <div class="edit-signup-box-left-field">
           <%= f.label :sex, "性別", class: "edit-signup-box-left-field-text" %><br />
           <%= f.collection_radio_buttons :sex, User.sexes_i18n, :first , :last %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:sex).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
 
         <div class="edit-signup-box-left-field">
           <%= f.label :ages, "年齢", class: "edit-signup-box-left-field-text" %><br />
           <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]}, {include_blank: '選択なし'} %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:ages).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
       </div>
       
@@ -48,11 +67,21 @@
             <em>(<%= @minimum_password_length %> 文字以上)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class: "edit-signup-box-right-field-form" %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:password).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
 
         <div class="edit-signup-box-right-field">
           <%= f.label :password_confirmation, "パスワード確認", class: "edit-signup-box-right-field-text" %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "edit-signup-box-right-field-form" %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
       </div>
 

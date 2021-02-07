@@ -10,11 +10,10 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   
-  validates :username, presence: true
-  validates :favorite, presence: false, length: { maximum: 50 }
+  validates :username, presence: true, length: { maximum: 20 }
+  validates :favorite, presence: false, length: { maximum: 30 }
   validates :sex, presence: true
   validates :ages, presence: true
 
@@ -32,7 +31,7 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(username: 'guest_test', email: 'guest_test@example.com', 
+    find_or_create_by!(username: 'guest_user', email: 'guest_test@email.example.com', 
                         sex: 'male', ages: 'twenties', favorite: 'ポケットモンスター') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
@@ -42,7 +41,6 @@ class User < ApplicationRecord
     params.delete(:current_password)
 
     if params[:password].blank? && params[:password_confirmation].blank?
-
       params.delete(:password)
       params.delete(:password_confirmation)
     end

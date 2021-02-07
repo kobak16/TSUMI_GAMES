@@ -12,6 +12,11 @@
         <div class="edit-signup-box-left-field">
           <%= f.label :title, "タイトル", class: "edit-signup-box-left-field-text" %><br />
           <%= f.text_field :title, class: 'edit-signup-box-left-field-form' %>
+          <div class="error-message">
+            <% @game.errors.full_messages_for(:title).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
 
         <div class="edit-signup-box-left-field">
@@ -50,15 +55,20 @@
           </script> 
         </div>    
         <div class="edit-signup-box-right-field">
-          <%= f.label :comment, 'コメント' ,class: 'edit-signup-box-right-field-text' %><br />
+          <%= f.label :comment, 'コメント' ,class: 'edit-signup-box-right-field-text' %><span>（50字以内）</span><br />
           <%= f.text_area :comment, autofocus: true, class: 'review-comment' %>
+          <div class="error-message">
+            <% @game.errors.full_messages_for(:comment).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
       </div>
 
     </div>
 
     <div class="btn-position mt-3">
-      <%= f.submit '変更する', class: 'btn-blue m-2', name: 'cleared' %>
+      <%= f.submit '更新する', class: 'btn-blue m-2' %>
       <%= link_to "Back", :back, class: "btn-black m-2" %>
     </div>
   <% end %>

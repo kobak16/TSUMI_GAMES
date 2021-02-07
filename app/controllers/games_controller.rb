@@ -11,6 +11,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
+      flash[:notice] = "積みゲーを追加しました"
       redirect_to user_path(@game.user_id)
     else
       render 'new'
@@ -33,24 +34,34 @@ class GamesController < ApplicationController
   def edit; end
 
   def update
-    if params[:name] == 'clear'
+    if params[:commit] == '登録'
+      @game.clear_day = Date.today
       if @game.update(game_params)
-        @clear_day =  @game.updated_at
+        flash[:notice] = "積みゲーを解消しました"
         redirect_to game_path(@game)
       else
-        render 'edit'
+        render '/partial/_edit_clear'
+      end
+    elsif params[:commit] == '更新する'
+      if @game.update(game_params)
+        flash[:notice] = "ゲーム情報を更新しました"
+        redirect_to game_path(@game)
+      else
+        render '/partial/_edit_cleared'
       end
     else
       if @game.update(game_params)
+        flash[:notice] = "ゲーム情報を更新しました"
         redirect_to game_path(@game)
       else
-        render 'edit'
+        render '/partial/_edit_not_cleared'
       end
     end
   end
 
   def destroy
     if @game.destroy
+      flash[:notice] = "ゲームを削除しました"
       redirect_to user_path(@game.user_id)
     else
       render 'show'
@@ -60,7 +71,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:title, :genre, :machine, :rate, :comment, :status, :image, :created_at, :updated_at).merge(user_id: current_user.id)
+    params.require(:game).permit(:title, :genre, :machine, :rate, :comment, :status, :image, :created_at, :updated_at, :clear_day).merge(user_id: current_user.id)
   end
 
   def set_games

@@ -30,7 +30,7 @@
       <div class="game-show-box-right-top">
         <%= render '/partial/game_info' %>
         <% if @game.status != 0 %>
-          <p class="info-text">クリア日<span class="info-text-insert pr-5"><%= @game.updated_at.strftime("%Y年%m月%d日") %></span></p>
+          <p class="info-text">クリア日<span class="info-text-insert pr-5"><%= @game.clear_day.strftime("%Y年%m月%d日") %></span></p>
         <% end %>
       </div>
 

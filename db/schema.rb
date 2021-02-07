@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_07_053156) do
+ActiveRecord::Schema.define(version: 2021_02_06_012056) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_01_07_053156) do
     t.text "comment"
     t.integer "status", default: 0, null: false
     t.string "image"
+    t.datetime "clear_day"
     t.index ["genre"], name: "index_games_on_genre"
     t.index ["machine"], name: "index_games_on_machine"
     t.index ["title"], name: "index_games_on_title"

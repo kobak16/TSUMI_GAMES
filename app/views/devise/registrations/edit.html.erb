@@ -6,18 +6,27 @@
 
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="row edit-signup-box d-flex justify-content-center">
       <div class="edit-signup-box-left px-5">
         <div class="field edit-signup-box-left-field">
           <%= f.label :username, "ユーザー名", class: "edit-signup-box-left-field-text" %><br />
           <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "edit-signup-box-left-field-form" %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:username).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
 
         <div class="field edit-signup-box-left-field">
           <%= f.label :email, "メールアドレス", class: "edit-signup-box-left-field-text" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit-signup-box-left-field-form" %>
+          <div class="error-message">
+            <% @user.errors.full_messages_for(:email).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
 
         <div class="field edit-signup-box-left-field">
@@ -29,7 +38,7 @@
       <div class="edit-signup-box-right px-5">
         <div class="field edit-signup-box-left-field">
           <%= f.label :ages, "年齢", class: "edit-signup-box-left-field-text" %><br />
-          <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]}, {include_blank: '選択なし'} %>
+          <%= f.select :ages, User.ages.keys.map {|k| [I18n.t("enums.user.ages.#{k}"), k]} %>
         </div>
 
         <div class="field edit-signup-box-left-field">

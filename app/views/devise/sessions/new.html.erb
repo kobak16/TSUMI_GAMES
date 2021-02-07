@@ -5,8 +5,12 @@
 <div class="edit-login-box">
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="error-message">
+      <%= render '/partial/login_error' %>
+    </div>
+    
     <div class="edit-login-box-field">
-      <%= f.label :email, "メールアドレス", class: "ledit-login-box-field-text" %><br />
+      <%= f.label :email, "メールアドレス", class: "edit-login-box-field-text" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit-login-box-field-form" %>
     </div>
 

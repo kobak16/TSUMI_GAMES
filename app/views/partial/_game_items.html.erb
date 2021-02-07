@@ -1,6 +1,6 @@
 <% if @games.any? %>
   <% @games.each do |game| %>
-    <div class="col-md-4">
+    <div class="col-lg-4">
       <%= link_to(game_path(game.id), class: "items-border d-flex m-1") do %>
         <div class="game-item-image">
           <% if game.image? %>
@@ -9,8 +9,8 @@
             <%= image_tag 'no-image.png', class: "item-image" %>
           <% end %>
         </div>
-        <div class="game-item-text">
-          <h5 class="item-text"><%= game.title %></h5>
+        <div class="game-item-text w-100">
+          <h5 class="item-text-title"><%= game.title %></h5>
           <h6 class="item-text"><%= game.machine_i18n %></h6>
           <h6 class="item-text"><%= game.genre_i18n%></h6>
           <h6 class="item-text"><%= game.user.username %></h6>

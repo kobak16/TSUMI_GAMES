@@ -20,6 +20,10 @@ window.$ = window.jQuery = require('jquery');
 require('packs/raty')
 require('packs/slick')
 
+$(function(){
+  setTimeout("$('.flash').fadeOut('slow')", 1000) 
+})
+
 import 'bootstrap'
 import '../src/application.scss'
 // import '@fortawesome/fontawesome-free/js/all'

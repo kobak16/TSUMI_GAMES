@@ -8,18 +8,23 @@
     <div class="edit-login-box-field">
       <%= f.label :title, "タイトル", class: "edit-login-box-field-text" %><br />
       <%= f.text_field :title, class: 'edit-login-box-field-form' %>
+      <div class="error-message">
+        <% @game.errors.full_messages_for(:title).each do |message| %>
+          <%= message %>
+        <% end %>
+      </div>
     </div>
 
     <div class="edit-login-box-field">
       <%= f.label :machine, "プラットフォーム", class: "edit-login-box-field-text" %><br />
       <%= f.select :machine, Game.machines.keys.map {|k| [I18n.t("enums.game.machine.#{k}"), k]}, {}, 
-              class: 'edit-login-box-field-form' %>
+            class: 'edit-login-box-field-form' %>
     </div>
 
     <div class="edit-login-box-field">
       <%= f.label :genre, "ジャンル", class: "edit-login-box-field-text" %><br />
       <%= f.select :genre, Game.genres.keys.map {|k| [I18n.t("enums.game.genre.#{k}"), k]}, {}, 
-              class: 'edit-login-box-field-form' %>
+            class: 'edit-login-box-field-form' %>
     </div>
 
     <div class="edit-login-box-field">

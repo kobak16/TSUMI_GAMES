@@ -5,7 +5,6 @@
   </div>
 
   <div class="row d-flex justify-content-center">
-
     <div class="clear-edit-box-left mx-5">
       <div class="clear-edit-box-left-image show-image-border">
         <%= render "/partial/game_show_image" %>
@@ -39,12 +38,17 @@
           </div>
 
           <div class="clear-edit-box-right-review-field">
-            <%= f.label :comment, 'コメント' ,class: 'clear-edit-box-right-review-field-text h5' %><br />
+            <%= f.label :comment, 'コメント' ,class: 'clear-edit-box-right-review-field-text h5' %><span>（50字以内）</span><br />
             <%= f.text_area :comment, autofocus: true, class: 'review-comment' %>
+            <div class="error-message">
+              <% @game.errors.full_messages_for(:comment).each do |message| %>
+                <%= message %>
+              <% end %>
+            </div>
           </div>
 
           <div class="game-edit-box-field btn-position">
-            <%= f.submit '登録', class: 'btn-red m-3', name: 'clear' %>
+            <%= f.submit '登録', class: 'btn-red m-3' %>
             <%= link_to "Back", :back, class: "btn-black m-3" %>
           </div>
         <% end %>

@@ -1,4 +1,4 @@
-<% if params[:sta] == 'none' %>
+<% if params[:sta] == 'all' %>
   <div class="d-flex h2">
     <p class='mygame-select-now'>全て</p>
     <span class="text-dark px-2">/</span>
@@ -8,7 +8,7 @@
   </div>
 <% elsif params[:sta] == 'not_cleared' %>
   <div class="d-flex h2">
-    <%= link_to '全て', { controller: 'users', action: 'mygames', sta: 'none' }, class: 'mygame-select-list' %>
+    <%= link_to '全て', { controller: 'users', action: 'mygames', sta: 'all' }, class: 'mygame-select-list' %>
     <span class="text-dark px-2">/</span>
     <p class='mygame-select-now'>未クリア</p>
     <span class="text-dark px-2">/</span>
@@ -16,7 +16,7 @@
   </div>
 <% elsif params[:sta] == 'cleared' %>
   <div class="d-flex h2">
-    <%= link_to '全て', { controller: 'users', action: 'mygames', sta: 'none' }, class: 'mygame-select-list' %>
+    <%= link_to '全て', { controller: 'users', action: 'mygames', sta: 'all' }, class: 'mygame-select-list' %>
     <span class="text-dark px-2">/</span>
     <%= link_to '未クリア', { controller: 'users', action: 'mygames', sta: 'not_cleared' }, class: 'mygame-select-list' %>
     <span class="text-dark px-2">/</span>
