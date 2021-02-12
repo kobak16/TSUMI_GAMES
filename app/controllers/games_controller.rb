@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :user_logged_in?, except: [:index]
   before_action :set_games, only: [:show,
                                    :edit,
                                    :update,
@@ -78,6 +79,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
-  
+  def user_logged_in?
+    unless user_signed_in?
+      redirect_to  '/users/sign_in'
+    end
+  end
   
 end

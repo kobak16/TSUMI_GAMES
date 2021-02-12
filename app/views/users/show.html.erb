@@ -23,7 +23,7 @@
         </div> 
         <div class="follower m-1">
           <%= link_to(followers_user_path(@user.id), class: "user-show-link") do %>
-            <h4><%= @user.followers.count %></h4>
+            <h4 id="followers"><%= @user.followers.count %></h4>
             <h6>フォロワー</h6>
           <% end %>
         </div>

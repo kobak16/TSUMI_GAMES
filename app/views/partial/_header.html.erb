@@ -14,7 +14,7 @@
         <%= link_to 'ゲーム検索', '/games', class: 'nav-link header-menu-item' %>
         <%= link_to 'ユーザー一覧', '/users', class: 'nav-link header-menu-item' %>
         <%= link_to '積みゲー追加', new_game_path, class: 'nav-link header-menu-item' %>    
-        <%= link_to 'マイゲーム', mygames_user_path(current_user.id, sta: 'all'), class: 'nav-link header-menu-item' %>
+        <%= link_to 'マイゲーム', mygames_user_path(current_user.id, name: 'all'), class: 'nav-link header-menu-item' %>
         <%= link_to '気になる', likes_user_path(current_user.id), class: 'nav-link header-menu-item' %>
         <%= link_to 'フォロー', followings_user_path(current_user.id), class: 'nav-link header-menu-item' %>
         <%= link_to 'フォロワー', followers_user_path(current_user.id), class: 'nav-link header-menu-item' %>
@@ -31,8 +31,11 @@
       <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'header-list p-2' %>
     </nav>
   </div>
+  <div class="header-menu bg-light shadow-sm">
+      <nav class="nav justify-content-center">
+        <%= link_to 'ゲーム検索', '/games', class: 'nav-link header-menu-item' %>
+        <%= link_to 'ユーザー一覧', '/users', class: 'nav-link header-menu-item' %>
+        <%= link_to '積みゲー追加', new_game_path, class: 'nav-link header-menu-item' %>    
+      </nav>
+    </div>
 <% end %>
-
-
-
-

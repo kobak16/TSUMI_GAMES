@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :user_logged_in?, except: [:index]
   before_action :set_user, only: [:show,
                                   :edit,
                                   :update,
@@ -15,14 +16,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    if params[:q].present?
-      @q = User.ransack(params[:q])
-      @users = @q.result(distinct: true).page(params[:page]).per(9)
-    else
-      params[:q] = { sorts: 'created_at desc' }
-      @q = User.ransack(params[:q])
-      @users = @q.result(distinct: true).page(params[:page]).per(9)
-    end
+    params[:q] = { sorts: 'created_at desc' } unless params[:q].present?
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page]).per(9)
   end
 
   def edit; end
@@ -31,12 +27,12 @@ class UsersController < ApplicationController
 
 
   def mygames
-    if params[:sta] == 'all'
+    if params[:name] == 'all'
       @games = Game.where(user_id: @user.id).page(params[:page]).per(9)
-    elsif params[:sta] == 'not_cleared'
+    elsif params[:name] == 'not_cleared'
       @games = Game.where(user_id: @user.id, status: 0).page(params[:page]).per(9)
       render :mygames
-    elsif params[:sta] == 'cleared'
+    elsif params[:name] == 'cleared'
       @games = Game.where(user_id: @user.id, status: 1).page(params[:page]).per(9)
       render :mygames
     end
@@ -63,6 +59,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_logged_in?
+    unless user_signed_in?
+      redirect_to  '/users/sign_in'
+    end
   end
 
 end

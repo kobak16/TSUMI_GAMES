@@ -22,7 +22,7 @@
       
       <div class="game-sort mt-2">
         <%= f.label :sorts, '並び替え： ' %>
-        <%= f.select :sorts, { '登録の新しい順': 'created_at desc', '登録の古い順': 'created_at asc', '評価の高い順': 'rate desc', '評価の低い順': 'rate asc' }, { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} %>
+        <%= f.select :sorts, { '登録の新しい順': 'created_at desc', '登録の古い順': 'created_at asc', '評価の高い順': 'rate desc', '評価の低い順': 'rate asc', '五十音順': 'title asc' }, { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} %>
       </div>
     <% end %>
 
