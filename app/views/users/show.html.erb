@@ -54,7 +54,7 @@
 
     <div class="user-show-bottom-box-left col-md-5 mx-3">
       <% if @not_cleared_games.any? %>
-        <h6>未クリア（<%= link_to '一覧へ', mygames_user_path(@user.id, sta: 'not_cleared'), class: 'user-show-link' %>）</h6>
+        <h6>未クリア（<%= link_to '一覧へ', mygames_user_path(@user.id, name: 'not_cleared'), class: 'user-show-link' %>）</h6>
         <% if @not_cleared_games.count >= 3 %>
           <div class="slider">
             <%= render '/partial/user_show_not_cleared' %>
@@ -73,7 +73,7 @@
     
     <div class="user-show-bottom-box-right col-md-5 mx-3">
       <% if @cleared_games.any? %>
-        <h6>クリア済み（<%= link_to '一覧へ', mygames_user_path(@user.id, sta: 'cleared'), class: 'user-show-link' %>）</h6>
+        <h6>クリア済み（<%= link_to '一覧へ', mygames_user_path(@user.id, name: 'cleared'), class: 'user-show-link' %>）</h6>
         <% if @cleared_games.count >= 3 %>
           <div class="slider">
             <%= render '/partial/user_show_cleared' %>
