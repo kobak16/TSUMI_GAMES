@@ -26,4 +26,6 @@ https://www.tsumi-games.xyz/
 ・Nginx 1.12.2  
 ・AWS(Route53, VPC, EC2, RDS, S3, ALB, ACM)
 
+![readme-network](https://user-images.githubusercontent.com/61346761/108066622-ebeb2080-70a2-11eb-87db-5b7a2a165ea0.png)
+
 ## 機能一覧
