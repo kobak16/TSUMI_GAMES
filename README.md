@@ -5,6 +5,9 @@
 ### URL
 https://www.tsumi-games.xyz/
 
+### ゲストログイン
+トップページのゲストログインボタン、或いはヘッダーのリンクより「guest_user」としてログイン可能です。
+
 
 Things you may want to cover:
 
