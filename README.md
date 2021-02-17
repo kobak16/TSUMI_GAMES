@@ -36,7 +36,7 @@ https://www.tsumi-games.xyz/
 ### ゲーム関連
 ・ゲームの登録/編集 (carrierwave)  
 ・ゲームの検索/並べ替え (ransack)  
-・気になるゲームの登録/削除  
+・気になるゲームの登録/削除 (ajax)   
 ・ゲームのレビュー (raty)  
 ### その他
 ・ページネーション (kaminari)  
