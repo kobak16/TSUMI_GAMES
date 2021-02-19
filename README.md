@@ -33,3 +33,13 @@ https://www.tsumi-games.xyz/
 ・ユーザー登録/ログイン/編集 (devise, carrierwave)  
 ・ユーザー検索/並べ替え (ransack)  
 ・ユーザーのフォロー (ajax)  
+### ゲーム関連
+・ゲームの登録/編集 (carrierwave)  
+・ゲームの検索/並べ替え (ransack)  
+・気になるゲームの登録/削除 (ajax)   
+・ゲームのレビュー (raty)  
+### その他
+・ページネーション (kaminari)  
+・スライドショー (slick)  
+・データ割り当て (enum)  
+・言語翻訳 (i18n)
